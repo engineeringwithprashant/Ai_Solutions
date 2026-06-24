@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Reviews &amp; Ratings | AI-Solutions</title>
+  <meta name="description" content="Read what clients say about AI-Solutions — verified reviews and star ratings from healthcare, retail, education, logistics, and security deployments." />
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a class="navbar-logo" href="home.html">
+    <img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" />
+    <span><span class="logo-ai">AI</span><span class="logo-dash">-Solutions</span></span>
+  </a>
+  <ul class="navbar-nav" role="list">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="testimonials.html" class="active">Testimonials</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+  <a href="contact.html" class="btn-nav-cta">Contact us</a>
+  <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav-overlay"></div>
+<nav class="mobile-nav-panel">
+  <button class="mobile-nav-close"><i class="fa fa-times"></i></button>
+  <a href="home.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="events.html">Events</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,250 C200,50 600,450 1000,250 S1400,50 1800,250" stroke="#c5dff4" stroke-width="1.4" fill="none" opacity="0.6"/>
+      <path d="M-200,350 C200,150 600,550 1000,350 S1400,150 1800,350" stroke="#d0e8f5" stroke-width="1"   fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+  <div class="container">
+    <span class="section-tag" data-aos="fade-down">Client feedback</span>
+    <h1 data-aos="fade-up">What our <span class="accent">clients say</span></h1>
+    <p data-aos="fade-up" data-aos-delay="80">Real reviews from real organisations who trust AI-Solutions to deliver enterprise AI that performs in production.</p>
+  </div>
+</section>
+
+<!-- RATING SUMMARY -->
+<section class="section" style="padding-top:40px;padding-bottom:0">
+  <div class="container">
+    <div class="rating-summary" data-aos="fade-up">
+      <!-- Big number -->
+      <div class="rating-big">
+        <div class="rating-num-big">4.8</div>
+        <div style="display:flex;justify-content:center;gap:4px;margin-bottom:8px">
+          <span style="color:#f59e0b;font-size:1.2rem">★★★★</span><span style="position:relative;display:inline-block;color:#e2e8f0;font-size:1.2rem">★<span style="position:absolute;left:0;top:0;color:#f59e0b;width:80%;overflow:hidden;display:block">★</span></span>
+        </div>
+        <div class="rating-label">Overall rating<br/>based on 157+ clients</div>
+      </div>
+      <!-- Bars -->
+      <div class="rating-bars">
+        <div class="rating-bar-row">
+          <span>5 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+          <span class="bar-count">113</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>4 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+          <span class="bar-count">31</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>3 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:5%;background:#94a3b8"></div></div>
+          <span class="bar-count">8</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>2 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:2%;background:#cbd5e1"></div></div>
+          <span class="bar-count">3</span>
+        </div>
+        <div class="rating-bar-row">
+          <span>1 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:1%;background:#e2e8f0"></div></div>
+          <span class="bar-count">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER + REVIEWS GRID -->
+<section class="section wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,400 C300,200 700,600 1100,400 S1500,200 1800,400" stroke="#c8e3f3" stroke-width="1.1" fill="none" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="container">
+    <!-- Filter tabs -->
+    <div class="filter-tabs" data-aos="fade-up" id="filterTabs">
+      <button class="filter-tab active" data-filter="all"><i class="fas fa-layer-group"></i> All Products</button>
+      <button class="filter-tab" data-filter="healthsync"><i class="fas fa-heartbeat"></i> HealthSync AI</button>
+      <button class="filter-tab" data-filter="retailmind"><i class="fas fa-chart-bar"></i> RetailMind</button>
+      <button class="filter-tab" data-filter="edunova"><i class="fas fa-graduation-cap"></i> EduNova</button>
+      <button class="filter-tab" data-filter="fleetpilot"><i class="fas fa-truck"></i> FleetPilot AI</button>
+      <button class="filter-tab" data-filter="securevision"><i class="fas fa-shield-halved"></i> SecureVision</button>
+    </div>
+
+    <!-- Reviews grid — filtered by JS -->
+    <div class="reviews-grid" id="reviewsGrid">
+
+      <!-- R1 -->
+      <div class="review-card" data-product="healthsync" data-aos="fade-up">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:none"><img src="Dr. Melissa Carter.jpg" alt="Dr. Melissa Carter"></div>
+            <div class="review-meta">
+              <h4>Dr. Melissa Carter</h4>
+              <span>Horizon Care Group</span>
+            </div>
+          </div>
+          <span class="review-product">HealthSync AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.8</span>
+        </div>
+        <p class="review-text">"HealthSync AI improved our hospital operations significantly and reduced patient waiting times. The predictive risk alerts have transformed how our clinical teams prioritise care. Exceptional support throughout deployment."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>March 2026</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R2 -->
+      <div class="review-card" data-product="retailmind" data-aos="fade-up" data-aos-delay="40">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:none"><img src="Daniel Brooks.jpg" alt="Daniel Brooks"></div>
+            <div class="review-meta">
+              <h4>Daniel Brooks</h4>
+              <span>UrbanStyle Retail</span>
+            </div>
+          </div>
+          <span class="review-product">RetailMind</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.7</span>
+        </div>
+        <p class="review-text">"RetailMind helped us understand customer behaviour better and increase overall revenue. The inventory optimisation module alone has saved us £300K in overstock costs this year. Highly recommend."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>February 2026</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R3 -->
+      <div class="review-card" data-product="edunova" data-aos="fade-up" data-aos-delay="80">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:none"><img src="Priya Sharma.jpg" alt="Priya Sharma"></div>
+            <div class="review-meta">
+              <h4>Priya Sharma</h4>
+              <span>Nova International College</span>
+            </div>
+          </div>
+          <span class="review-product">EduNova</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="rating-num">4.9</span>
+        </div>
+        <p class="review-text">"EduNova transformed the learning experience for our students with personalised AI recommendations. Engagement metrics are up 38% across every cohort. The multilingual support was a game-changer for our diverse student body."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>January 2026</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R4 -->
+      <div class="review-card" data-product="fleetpilot" data-aos="fade-up">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:none"><img src="Eric.jpg" alt="Eric Thompson"></div>
+            <div class="review-meta">
+              <h4>Eric Thompson</h4>
+              <span>SwiftMove Logistics</span>
+            </div>
+          </div>
+          <span class="review-product">FleetPilot AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.6</span>
+        </div>
+        <p class="review-text">"FleetPilot AI streamlined our delivery network and improved fuel efficiency beyond what we thought achievable. Driver insights have reduced incidents by 28%. The ROI was clear within the first quarter."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>December 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R5 -->
+      <div class="review-card" data-product="securevision" data-aos="fade-up" data-aos-delay="40">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:none"><img src="Karen White.jpg" alt="Karen White"></div>
+            <div class="review-meta">
+              <h4>Karen White</h4>
+              <span>Nexa Corporate Solutions</span>
+            </div>
+          </div>
+          <span class="review-product">SecureVision</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.8</span>
+        </div>
+        <p class="review-text">"SecureVision strengthened our security infrastructure with real-time monitoring and alerts. Response times dropped by over 60% and false-positive rates are minimal. Excellent implementation team."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>November 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R6 -->
+      <div class="review-card" data-product="healthsync" data-aos="fade-up" data-aos-delay="80">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0a87ce,#2d3e50)">JO</div>
+            <div class="review-meta">
+              <h4>James O'Connor</h4>
+              <span>MediCore Diagnostics</span>
+            </div>
+          </div>
+          <span class="review-product">HealthSync AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="review-text">"The AI-assisted diagnostics integration saved our radiologists an average of 2 hours per day. The wearable integration opened up remote patient monitoring we didn't think was achievable at this cost. Outstanding product."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>October 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R7 -->
+      <div class="review-card" data-product="edunova" data-aos="fade-up">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#1f89de,#2d3e50)">SZ</div>
+            <div class="review-meta">
+              <h4>Sophie Zhang</h4>
+              <span>EduTech Global</span>
+            </div>
+          </div>
+          <span class="review-product">EduNova</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.7</span>
+        </div>
+        <p class="review-text">"We rolled EduNova out to 8,000 learners across three countries. The automated grading and AI quiz generation saved our content team hundreds of hours. Support has been fantastic from day one."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>September 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R8 -->
+      <div class="review-card" data-product="retailmind" data-aos="fade-up" data-aos-delay="40">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0a87ce,#1f89de)">CR</div>
+            <div class="review-meta">
+              <h4>Carlos Rivera</h4>
+              <span>RetailMind MX</span>
+            </div>
+          </div>
+          <span class="review-product">RetailMind</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="review-text">"Product placement recommendations drove a 19% uplift in basket value across our stores. The POS and CRM integration worked seamlessly with our existing stack. Best AI investment we've made."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>August 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R9 -->
+      <div class="review-card" data-product="fleetpilot" data-aos="fade-up" data-aos-delay="80">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#2d3e50,#0a87ce)">OH</div>
+            <div class="review-meta">
+              <h4>Oliver Hayes</h4>
+              <span>FleetPilot UK</span>
+            </div>
+          </div>
+          <span class="review-product">FleetPilot AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.5</span>
+        </div>
+        <p class="review-text">"Route optimisation reduced our average delivery time by 22 minutes. The live tracking dashboard gives our operations team the visibility we've always wanted. Solid product, great roadmap."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>July 2025</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R10 — HealthSync AI -->
+      <div class="review-card" data-product="healthsync" data-aos="fade-up" data-aos-delay="40">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">AK</div>
+            <div class="review-meta">
+              <h4>Ananya Khan</h4>
+              <span>CityHealth NHS Trust</span>
+            </div>
+          </div>
+          <span class="review-product">HealthSync AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star-half">★</span>
+          <span class="rating-num">4.9</span>
+        </div>
+        <p class="review-text">"We deployed HealthSync AI across two hospitals and saw a 31% reduction in missed appointments. The real-time sync with our EHR system was flawless — the team made what seemed complex feel completely straightforward."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>April 2026</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+      <!-- R11 — FleetPilot AI -->
+      <div class="review-card" data-product="fleetpilot" data-aos="fade-up" data-aos-delay="80">
+        <div class="review-header">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0a87ce,#1570b8)">NP</div>
+            <div class="review-meta">
+              <h4>Natalie Park</h4>
+              <span>NorthExpress Courier</span>
+            </div>
+          </div>
+          <span class="review-product">FleetPilot AI</span>
+        </div>
+        <div class="stars-wrap">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="rating-num">4.9</span>
+        </div>
+        <p class="review-text">"We cut fuel spend by 18% in the first three months. The predictive maintenance alerts prevented two major breakdowns we'd have missed entirely. Best logistics AI we evaluated — and we looked at four competitors."</p>
+        <div class="review-footer">
+          <span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>May 2026</span>
+          <span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>
+        </div>
+      </div>
+
+    </div><!-- /.reviews-grid -->
+
+    <!-- CTA to submit review -->
+    <div style="text-align:center;margin-top:52px" data-aos="fade-up">
+      <p style="color:var(--body-text);margin-bottom:16px;font-size:.95rem">Have you worked with AI-Solutions? We'd love to hear your feedback.</p>
+      <a href="contact.html" class="btn btn-primary">Share your experience <i class="fas fa-star" style="margin-left:6px"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,150 C300,-50 700,350 1100,150 S1500,-50 1800,150" stroke="#c8e3f3" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <h2>Join 157+ organisations <span style="color:var(--blue)">trusting AI-Solutions</span></h2>
+    <p>Experience the difference when AI is built right from the ground up.</p>
+    <a href="contact.html" class="btn btn-primary btn-arrow">Book a free consultation</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo"><img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" /><span><span class="f-logo-ai">AI</span><span class="f-logo-sol">-Solutions</span></span></div>
+        <p>Building intelligent, reliable AI systems for organisations that can't afford to get it wrong. Based in Sunderland, UK.</p>
+        <div class="footer-social">
+          <a href="https://x.com/aisolutionsss" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ai-solutions-84b623416/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@AI_Solutionsss" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Articles</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="#">Case Studies</a></li>
+          
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="f-contact-item"><i class="fas fa-map-marker-alt"></i><span>12 Innovation Quarter, Sunderland, SR1 3EN, UK</span></div>
+        <div class="f-contact-item"><i class="fas fa-phone"></i><span>+44 (0)191 555 0100</span></div>
+        <div class="f-contact-item"><i class="fas fa-envelope"></i><span>helloo.ai.solutions@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI-Solutions, Sunderland UK. All rights reserved.</p>
+      
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/script.js"></script>
+<script src="js/assistant.js"></script>
+<script>
+(function() {
+  var _logos  = {healthsync:'Health Sync AI.png',retailmind:'Retail Mind.png',edunova:'Edu Nova.png',fleetpilot:'FleetPilot AI.png',securevision:'SecureVision.png'};
+  var _colors = {healthsync:'#10b981,#059669',retailmind:'#8b5cf6,#7c3aed',edunova:'#f59e0b,#d97706',fleetpilot:'#0a87ce,#1570b8',securevision:'#6366f1,#4f46e5'};
+  document.querySelectorAll('.review-card[data-product]').forEach(function(card) {
+    var p = card.dataset.product;
+    /* product logo badge */
+    var badge = card.querySelector('.review-product');
+    if (badge && _logos[p] && !badge.querySelector('img')) {
+      badge.innerHTML = '<img src="' + _logos[p] + '" alt="' + badge.textContent.trim() + '">';
+    }
+    /* avatar: real photo or product-colour gradient */
+    var av = card.querySelector('.review-avatar');
+    if (av && !av.querySelector('img') && _colors[p]) {
+      av.style.background = 'linear-gradient(135deg,' + _colors[p] + ')';
+    }
+  });
+})();
+</script>
+<script>
+  /* ── Review filter tabs ── */
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.review-card').forEach(card => {
+        if (filter === 'all' || card.dataset.product === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+<script>
+(async function() {
+  function xe(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function renderStars(rating) {
+    var full = Math.floor(rating);
+    var half = (rating - full) >= 0.3 ? 1 : 0;
+    var html = '<span class="star">★</span>'.repeat(full);
+    if (half) html += '<span class="star-half">★</span>';
+    html += '<span class="rating-num">' + rating + '</span>';
+    return html;
+  }
+  function fmtDate(str) {
+    try { return new Date(str).toLocaleDateString('en-GB',{month:'long',year:'numeric'}); } catch(e) { return ''; }
+  }
+  try {
+    var data = await fetch('/api/admin/public/testimonials').then(function(r){ return r.json(); });
+    if (!Array.isArray(data) || !data.length) return;
+    var delays = [0,40,80,0,40,80];
+    var _productLogos   = {healthsync:'Health Sync AI.png',retailmind:'Retail Mind.png',edunova:'Edu Nova.png',fleetpilot:'FleetPilot AI.png',securevision:'SecureVision.png'};
+    var _avatarColors   = {healthsync:'#10b981,#059669',retailmind:'#8b5cf6,#7c3aed',edunova:'#f59e0b,#d97706',fleetpilot:'#0a87ce,#1570b8',securevision:'#6366f1,#4f46e5'};
+    var _reviewerPhotos = {'dr. melissa carter':'Dr. Melissa Carter.jpg','daniel brooks':'Daniel Brooks.jpg','priya sharma':'Priya Sharma.jpg','eric thompson':'Eric.jpg','karen white':'Karen White.jpg'};
+    document.getElementById('reviewsGrid').innerHTML = data.map(function(t, i) {
+      var rawSlug = (t.product||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+      var slugMap = {'healthsyncai':'healthsync','fleetpilotai':'fleetpilot'};
+      var slug = slugMap[rawSlug] || rawSlug;
+      var initials = t.initials || (t.client_name||'').split(' ').map(function(w){ return w[0]||''; }).join('').slice(0,2).toUpperCase();
+      var delayAttr = i > 0 ? ' data-aos-delay="' + (delays[i%6]||0) + '"' : '';
+      var logoSrc   = _productLogos[slug] || '';
+      var avColor   = _avatarColors[slug] || '#1f89de,#0a87ce';
+      var photoSrc  = _reviewerPhotos[(t.client_name||'').toLowerCase().trim()] || '';
+      var avatarHtml = photoSrc
+        ? '<div class="review-avatar" style="background:none"><img src="' + photoSrc + '" alt="' + xe(t.client_name||'') + '"></div>'
+        : '<div class="review-avatar" style="background:linear-gradient(135deg,' + avColor + ')">' + xe(initials) + '</div>';
+      return '<div class="review-card" data-product="' + xe(slug) + '" data-aos="fade-up"' + delayAttr + '>'
+        + '<div class="review-header">'
+        +   '<div style="display:flex;gap:12px;align-items:center">'
+        +     avatarHtml
+        +     '<div class="review-meta"><h4>' + xe(t.client_name||'') + '</h4><span>' + xe(t.company||t.client_role||'') + '</span></div>'
+        +   '</div>'
+        +   '<span class="review-product">' + (logoSrc ? '<img src="' + logoSrc + '" alt="' + xe(t.product||'') + '">' : xe(t.product||'')) + '</span>'
+        + '</div>'
+        + '<div class="stars-wrap">' + renderStars(t.rating||5) + '</div>'
+        + '<p class="review-text">&ldquo;' + xe(t.quote||'') + '&rdquo;</p>'
+        + '<div class="review-footer">'
+        +   '<span class="review-date"><i class="far fa-calendar-alt" style="margin-right:4px"></i>' + fmtDate(t.created_at) + '</span>'
+        +   '<span style="font-size:.72rem;color:#48bb78;font-weight:600"><i class="fas fa-check-circle"></i> Verified</span>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

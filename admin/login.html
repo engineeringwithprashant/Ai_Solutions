@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | AI-Solutions</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<div class="login-page">
+
+  <div class="login-card">
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <img src="../logo.png" alt="AI-Solutions" onerror="this.style.display='none'" />
+      <span><span class="ai">AI</span><span class="sol">-Solutions</span></span>
+    </div>
+    <a href="../home.html" class="login-home-link"><i class="fas fa-house" style="margin-right:5px;font-size:.75rem"></i>Home</a>
+
+    <h2 class="login-title">Sign in to your account</h2>
+
+    <!-- Error banner (shown on failed login) -->
+    <div class="login-error" id="loginError" role="alert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="loginErrorMsg">Invalid credentials. Please try again.</span>
+    </div>
+
+    <!--
+      Admin login form — POSTs to /api/admin/login (Node.js/Express)
+      Backend should validate credentials against the database,
+      set a session cookie (or return a JWT), and redirect to dashboard.html.
+    -->
+    <form id="adminLoginForm" novalidate>
+
+      <div class="form-group">
+        <label for="admin-username">Username or Email</label>
+        <input
+          type="text"
+          id="admin-username"
+          name="username"
+          class="form-control"
+          placeholder=""
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="admin-password">Password</label>
+        <div style="position:relative">
+          <input
+            type="password"
+            id="admin-password"
+            name="password"
+            class="form-control"
+            placeholder=""
+            autocomplete="current-password"
+            style="padding-right:46px"
+            required
+          />
+          <!-- Toggle password visibility -->
+          <button
+            type="button"
+            id="togglePwd"
+            style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--light-text);font-size:.95rem;padding:0"
+            aria-label="Toggle password visibility"
+          >
+            <i class="fas fa-eye" id="togglePwdIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;font-size:.82rem;text-align:right">
+        <a href="#" id="forgotLink" style="color:var(--blue);font-weight:500">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        Sign in <i class="fas fa-arrow-right" style="margin-left:6px;font-size:.85rem"></i>
+      </button>
+
+    </form>
+
+    <!-- ── 2FA panel (shown after correct password if 2FA enabled) ── -->
+    <div id="twoFAPanel" style="display:none">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="width:52px;height:52px;background:rgba(10,135,206,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+          <i class="fas fa-shield-alt" style="color:#0a87ce;font-size:1.3rem"></i>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px">Two-Factor Authentication</h3>
+        <p style="font-size:.82rem;color:var(--light-text)">Open Google Authenticator and enter the 6-digit code.</p>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px">
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        <input class="otp-box totp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+      </div>
+      <div id="twoFAError" class="login-error" role="alert" style="margin-bottom:14px"></div>
+      <button type="button" class="btn-login" id="twoFAVerifyBtn">
+        Verify <i class="fas fa-check" style="margin-left:6px;font-size:.85rem"></i>
+      </button>
+      <button type="button" id="twoFABackBtn" style="display:block;margin:14px auto 0;background:none;border:none;color:var(--blue);font-size:.82rem;cursor:pointer;font-family:inherit">← Back to login</button>
+    </div>
+
+    <!-- ── Forgot-password panel (3 steps, hidden by default) ── -->
+    <div id="fpPanel" style="display:none">
+
+      <!-- Step 1: Enter email -->
+      <div id="fpStep1">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px">Reset your password</h3>
+        <p style="font-size:.82rem;color:var(--light-text);margin-bottom:20px">Enter your admin email and we'll send you a 6-digit code.</p>
+        <div class="form-group">
+          <label for="fpEmail">Admin Email</label>
+          <input type="email" id="fpEmail" class="form-control" value="helloo.ai.solutions@gmail.com" />
+        </div>
+        <div id="fpMsg1" style="display:none;font-size:.8rem;margin-bottom:12px;padding:10px 14px;border-radius:8px"></div>
+        <button type="button" id="fpSendBtn" class="btn-login">Send Code <i class="fas fa-paper-plane" style="margin-left:6px;font-size:.82rem"></i></button>
+        <button type="button" id="fpBackLogin" style="display:block;margin:14px auto 0;background:none;border:none;color:var(--blue);font-size:.82rem;cursor:pointer;font-family:inherit">← Back to login</button>
+      </div>
+
+      <!-- Step 2: Enter OTP -->
+      <div id="fpStep2" style="display:none">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px">Enter the code</h3>
+        <p id="fpSentTo" style="font-size:.82rem;color:var(--light-text);margin-bottom:20px">We sent a 6-digit code to your email.</p>
+        <div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px">
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        </div>
+        <div id="fpMsg2" style="display:none;font-size:.8rem;margin-bottom:12px;padding:10px 14px;border-radius:8px"></div>
+        <button type="button" id="fpVerifyBtn" class="btn-login">Verify Code <i class="fas fa-check" style="margin-left:6px;font-size:.82rem"></i></button>
+        <p style="text-align:center;font-size:.78rem;margin-top:14px;color:var(--light-text)">Didn't receive it? <a href="#" id="fpResend" style="color:var(--blue);font-weight:600">Resend</a></p>
+      </div>
+
+      <!-- Step 3: New password -->
+      <div id="fpStep3" style="display:none">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px">Set new password</h3>
+        <p style="font-size:.82rem;color:var(--light-text);margin-bottom:20px">Choose a strong password (min. 8 characters).</p>
+        <div class="form-group">
+          <label for="fpNewPwd">New Password</label>
+          <input type="password" id="fpNewPwd" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="fpConfirmPwd">Confirm Password</label>
+          <input type="password" id="fpConfirmPwd" class="form-control" />
+        </div>
+        <div id="fpMsg3" style="display:none;font-size:.8rem;margin-bottom:12px;padding:10px 14px;border-radius:8px"></div>
+        <button type="button" id="fpResetBtn" class="btn-login">Reset Password <i class="fas fa-lock" style="margin-left:6px;font-size:.82rem"></i></button>
+      </div>
+
+      <!-- Step 4: Success -->
+      <div id="fpStep4" style="display:none;text-align:center;padding:12px 0">
+        <div style="width:60px;height:60px;background:rgba(72,187,120,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <i class="fas fa-check-circle" style="color:#48bb78;font-size:1.8rem"></i>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px">Password updated!</h3>
+        <p style="font-size:.82rem;color:var(--light-text);margin-bottom:20px">Your password has been changed. You can now log in.</p>
+        <button type="button" id="fpDoneBtn" class="btn-login">Back to Login</button>
+      </div>
+
+    </div><!-- /#fpPanel -->
+
+  </div><!-- /.login-card -->
+</div><!-- /.login-page -->
+
+<style>
+.otp-box {
+  width: 44px; height: 52px;
+  text-align: center;
+  font-size: 1.4rem; font-weight: 700;
+  font-family: 'Poppins', monospace;
+  color: var(--navy);
+  border: 1.5px solid rgba(0,0,0,0.13);
+  border-radius: 10px;
+  background: #fafcff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.otp-box:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(10,135,206,.13); }
+.fp-msg-ok  { background: rgba(72,187,120,.1); border:1px solid #86efac; color: #166534; }
+.fp-msg-err { background: rgba(229,62,62,.07); border:1px solid #fca5a5; color: #991b1b; }
+</style>
+
+<script>
+  /* --------------------------------------------------------
+     Admin Login — client-side script
+     Sends POST /api/admin/login
+     On success: redirect to dashboard.html
+     On failure: show error banner
+  -------------------------------------------------------- */
+  (function () {
+
+    /* Password toggle */
+    document.getElementById('togglePwd')?.addEventListener('click', function () {
+      const pwd  = document.getElementById('admin-password');
+      const icon = document.getElementById('togglePwdIcon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    });
+
+    var _loginUsername = '';
+
+    /* Form submit */
+    document.getElementById('adminLoginForm')?.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('admin-username').value.trim();
+      const password = document.getElementById('admin-password').value;
+      const errorEl  = document.getElementById('loginError');
+      const errMsg   = document.getElementById('loginErrorMsg');
+      const btn      = document.getElementById('loginBtn');
+
+      if (!username || !password) {
+        errMsg.textContent = 'Please enter your username and password.';
+        errorEl.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Signing in…';
+
+      try {
+        const res = await fetch('/api/admin/login', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ username, password }),
+          credentials: 'include',
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.needs_2fa) {
+          _loginUsername = username;
+          document.getElementById('adminLoginForm').style.display = 'none';
+          document.getElementById('twoFAPanel').style.display = '';
+          document.querySelector('.totp-box').focus();
+          btn.disabled = false;
+          btn.innerHTML = 'Sign in <i class="fas fa-arrow-right" style="margin-left:6px;font-size:.85rem"></i>';
+          return;
+        }
+
+        if (res.ok && data.token) {
+          sessionStorage.setItem('ais_admin_token', data.token);
+          window.location.href = 'dashboard.html';
+          return;
+        }
+
+        errMsg.textContent = data.message || 'Invalid credentials. Please try again.';
+        errorEl.classList.add('show');
+        btn.disabled = false;
+        btn.innerHTML = 'Sign in <i class="fas fa-arrow-right" style="margin-left:6px;font-size:.85rem"></i>';
+      } catch {
+        errMsg.textContent = 'Cannot reach the server.';
+        errorEl.classList.add('show');
+        btn.disabled = false;
+        btn.innerHTML = 'Sign in <i class="fas fa-arrow-right" style="margin-left:6px;font-size:.85rem"></i>';
+      }
+    });
+
+    /* 2FA OTP boxes */
+    var totpBoxes = document.querySelectorAll('.totp-box');
+    totpBoxes.forEach(function(box, i) {
+      box.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g,'').slice(-1);
+        if (this.value && i < totpBoxes.length - 1) totpBoxes[i+1].focus();
+      });
+      box.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value && i > 0) totpBoxes[i-1].focus();
+      });
+    });
+
+    /* 2FA verify button */
+    document.getElementById('twoFAVerifyBtn')?.addEventListener('click', async function() {
+      const code = Array.from(totpBoxes).map(b => b.value).join('');
+      const errEl = document.getElementById('twoFAError');
+      if (code.length < 6) { errEl.textContent = 'Enter all 6 digits.'; errEl.classList.add('show'); return; }
+      this.disabled = true;
+      this.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Verifying…';
+      errEl.classList.remove('show');
+      try {
+        const res  = await fetch('/api/admin/2fa/verify', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: _loginUsername, code }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.token) {
+          sessionStorage.setItem('ais_admin_token', data.token);
+          window.location.href = 'dashboard.html';
+          return;
+        }
+        errEl.textContent = data.message || 'Invalid code.';
+        errEl.classList.add('show');
+        totpBoxes.forEach(b => b.value = '');
+        totpBoxes[0].focus();
+      } catch {
+        errEl.textContent = 'Server unreachable.';
+        errEl.classList.add('show');
+      }
+      this.disabled = false;
+      this.innerHTML = 'Verify <i class="fas fa-check" style="margin-left:6px;font-size:.85rem"></i>';
+    });
+
+    /* 2FA back button */
+    document.getElementById('twoFABackBtn')?.addEventListener('click', function() {
+      document.getElementById('twoFAPanel').style.display = 'none';
+      document.getElementById('adminLoginForm').style.display = '';
+      totpBoxes.forEach(b => b.value = '');
+    });
+
+  })();
+</script>
+
+<script>
+/* --------------------------------------------------------
+   Forgot-password panel — multi-step flow
+-------------------------------------------------------- */
+(function () {
+  var loginForm  = document.getElementById('adminLoginForm');
+  var fpPanel    = document.getElementById('fpPanel');
+  var resetToken = null;
+
+  /* ---- helpers ---- */
+  function showStep(n) {
+    [1,2,3,4].forEach(function(i){
+      document.getElementById('fpStep'+i).style.display = i === n ? '' : 'none';
+    });
+  }
+  function msg(el, text, type) {
+    el.textContent = text;
+    el.className   = 'fp-msg-' + type;
+    el.style.display = text ? '' : 'none';
+  }
+  function setBtn(btn, loading, label) {
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<i class="fas fa-circle-notch fa-spin"></i> ' + label
+      : label;
+  }
+  function getOtp() {
+    return Array.from(document.querySelectorAll('.otp-box'))
+      .map(function(b){ return b.value; }).join('');
+  }
+
+  /* ---- show panel ---- */
+  document.getElementById('forgotLink')?.addEventListener('click', function(e){
+    e.preventDefault();
+    loginForm.style.display    = 'none';
+    fpPanel.style.display      = '';
+    document.getElementById('loginError').classList.remove('show');
+    showStep(1);
+    msg(document.getElementById('fpMsg1'), '', 'ok');
+  });
+
+  /* ---- back to login ---- */
+  document.getElementById('fpBackLogin')?.addEventListener('click', function(){
+    fpPanel.style.display   = 'none';
+    loginForm.style.display = '';
+  });
+  document.getElementById('fpDoneBtn')?.addEventListener('click', function(){
+    fpPanel.style.display   = 'none';
+    loginForm.style.display = '';
+    showStep(1);
+    resetToken = null;
+  });
+
+  /* ---- Step 1: send OTP ---- */
+  document.getElementById('fpSendBtn')?.addEventListener('click', async function(){
+    var email = document.getElementById('fpEmail').value.trim();
+    var m1    = document.getElementById('fpMsg1');
+    if (!email) { msg(m1, 'Please enter your email.', 'err'); return; }
+    setBtn(this, true, 'Sending…');
+    try {
+      var res  = await fetch('/api/admin/forgot-password', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email }),
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (res.ok) {
+        document.getElementById('fpSentTo').textContent =
+          'We sent a 6-digit code to ' + email + '. Check your inbox.';
+        document.querySelectorAll('.otp-box').forEach(function(b){ b.value=''; });
+        showStep(2);
+        document.querySelectorAll('.otp-box')[0].focus();
+      } else {
+        msg(m1, data.message || 'Could not send code. Try again.', 'err');
+      }
+    } catch(err) {
+      msg(m1, 'Server unreachable. Make sure the server is running.', 'err');
+    }
+    setBtn(this, false, 'Send Code <i class="fas fa-paper-plane" style="margin-left:6px;font-size:.82rem"></i>');
+  });
+
+  /* ---- OTP boxes: auto-advance, backspace, paste ---- */
+  var otpBoxes = document.querySelectorAll('.otp-box');
+  otpBoxes.forEach(function(box, i){
+    box.addEventListener('input', function(){
+      this.value = this.value.replace(/[^0-9]/g,'').slice(-1);
+      if (this.value && i < otpBoxes.length - 1) otpBoxes[i+1].focus();
+    });
+    box.addEventListener('keydown', function(e){
+      if (e.key === 'Backspace' && !this.value && i > 0) otpBoxes[i-1].focus();
+    });
+    box.addEventListener('paste', function(e){
+      e.preventDefault();
+      var text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'');
+      text.split('').slice(0,6).forEach(function(ch, j){
+        if (otpBoxes[i+j]) otpBoxes[i+j].value = ch;
+      });
+      var next = Math.min(i + text.length, otpBoxes.length - 1);
+      otpBoxes[next].focus();
+    });
+  });
+
+  /* ---- Step 2: verify OTP ---- */
+  document.getElementById('fpVerifyBtn')?.addEventListener('click', async function(){
+    var code = getOtp();
+    var m2   = document.getElementById('fpMsg2');
+    if (code.length < 6) { msg(m2, 'Enter all 6 digits.', 'err'); return; }
+    setBtn(this, true, 'Verifying…');
+    try {
+      var email = document.getElementById('fpEmail').value.trim();
+      var res   = await fetch('/api/admin/verify-reset-code', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email, code }),
+      });
+      var data  = await res.json().catch(function(){ return {}; });
+      if (res.ok && data.resetToken) {
+        resetToken = data.resetToken;
+        showStep(3);
+        document.getElementById('fpNewPwd').value     = '';
+        document.getElementById('fpConfirmPwd').value = '';
+        msg(document.getElementById('fpMsg3'), '', 'ok');
+      } else {
+        msg(m2, data.message || 'Incorrect or expired code.', 'err');
+      }
+    } catch(err) {
+      msg(m2, 'Server unreachable.', 'err');
+    }
+    setBtn(this, false, 'Verify Code <i class="fas fa-check" style="margin-left:6px;font-size:.82rem"></i>');
+  });
+
+  /* ---- Resend ---- */
+  document.getElementById('fpResend')?.addEventListener('click', function(e){
+    e.preventDefault();
+    showStep(1);
+    msg(document.getElementById('fpMsg1'), '', 'ok');
+  });
+
+  /* ---- Step 3: reset password ---- */
+  document.getElementById('fpResetBtn')?.addEventListener('click', async function(){
+    var pwd1 = document.getElementById('fpNewPwd').value;
+    var pwd2 = document.getElementById('fpConfirmPwd').value;
+    var m3   = document.getElementById('fpMsg3');
+    if (pwd1.length < 8) { msg(m3, 'Password must be at least 8 characters.', 'err'); return; }
+    if (pwd1 !== pwd2)   { msg(m3, 'Passwords do not match.', 'err'); return; }
+    if (!resetToken)     { msg(m3, 'Session expired. Start over.', 'err'); return; }
+    setBtn(this, true, 'Saving…');
+    try {
+      var res  = await fetch('/api/admin/reset-password', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ resetToken, newPassword: pwd1 }),
+      });
+      var data = await res.json().catch(function(){ return {}; });
+      if (res.ok) {
+        showStep(4);
+        resetToken = null;
+      } else {
+        msg(m3, data.message || 'Reset failed. Try again.', 'err');
+      }
+    } catch(err) {
+      msg(m3, 'Server unreachable.', 'err');
+    }
+    setBtn(this, false, 'Reset Password <i class="fas fa-lock" style="margin-left:6px;font-size:.82rem"></i>');
+  });
+
+})();
+</script>
+
+</body>
+</html>

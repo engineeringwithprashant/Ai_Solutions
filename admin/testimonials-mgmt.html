@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonials | Admin | AI-Solutions</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="../logo.png" onerror="this.style.display='none'" />
+        <span><span class="ai">AI</span><span class="sol">-Solutions</span></span>
+      </div>
+      <div class="sidebar-subtitle">Admin Portal</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a href="enquiries.html"><i class="fas fa-inbox"></i> Enquiries</a>
+      <a href="subscribers.html"><i class="fas fa-mail-bulk"></i> Newsletter</a>
+      <div class="sidebar-section-label">Content</div>
+      <a href="blog.html"><i class="fas fa-newspaper"></i> Blog Posts</a>
+      <a href="events-mgmt.html"><i class="fas fa-calendar-alt"></i> Events</a>
+      <a href="testimonials-mgmt.html" class="active"><i class="fas fa-star"></i> Testimonials</a>
+      <a href="team.html"><i class="fas fa-users"></i> Team Members</a>
+      <a href="gallery-mgmt.html"><i class="fas fa-images"></i> Gallery</a>
+      <div class="sidebar-section-label">System</div>
+      <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../home.html"><i class="fas fa-external-link-alt"></i> View site</a>
+      <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="topbar-title">Testimonials</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge" id="topbarDate">Loading…</span>
+        <div class="topbar-avatar" id="topbarAvatar"><div class="avatar-img-wrap"><img src="../logo.png" alt="A" /></div></div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="page-header">
+        <div>
+          <h2>Client Testimonials</h2>
+          <p>Manage reviews and quotes displayed on the website</p>
+        </div>
+        <button class="btn-add" onclick="openAdd()"><i class="fas fa-plus"></i> Add Testimonial</button>
+      </div>
+
+      <div class="table-card">
+        <div class="table-card-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <h3>All Testimonials</h3>
+            <span class="badge" id="tableCount">0 total</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <select id="statusFilter" onchange="applyFilters()" style="padding:7px 12px;border:1.5px solid rgba(0,0,0,.1);border-radius:50px;font-size:.78rem;font-family:Poppins;outline:none;background:#fff">
+              <option value="">All statuses</option>
+              <option value="published">Published</option>
+              <option value="hidden">Hidden</option>
+            </select>
+            <div style="position:relative">
+              <i class="fas fa-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--light-text);font-size:.8rem"></i>
+              <input type="text" placeholder="Search…" id="tableSearch" style="padding:7px 12px 7px 34px;border:1.5px solid rgba(0,0,0,.1);border-radius:50px;font-size:.8rem;font-family:Poppins;outline:none;width:190px" oninput="applyFilters()" />
+            </div>
+            <button class="refresh-btn" onclick="loadItems()"><i class="fas fa-rotate-right" id="refreshIcon"></i> Refresh</button>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Company</th>
+                <th>Product</th>
+                <th>Rating</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr><td colspan="7" class="table-loading"><i class="fas fa-circle-notch spin"></i>Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div id="modal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle">Add Testimonial</h3>
+      <button onclick="closeModal()" class="modal-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="itemForm" onsubmit="return false">
+        <div class="mf-row">
+          <div class="mf-group">
+            <label>Client Name *</label>
+            <input type="text" id="fName" class="mf-input" placeholder="Dr. Melissa Carter" required />
+          </div>
+          <div class="mf-group">
+            <label>Job Title</label>
+            <input type="text" id="fRole" class="mf-input" placeholder="Chief Medical Officer" />
+          </div>
+        </div>
+        <div class="mf-row">
+          <div class="mf-group">
+            <label>Company</label>
+            <input type="text" id="fCompany" class="mf-input" placeholder="Horizon Care Group" />
+          </div>
+          <div class="mf-group">
+            <label>Product</label>
+            <input type="text" id="fProduct" class="mf-input" placeholder="HealthSync AI" />
+          </div>
+        </div>
+        <div class="mf-group">
+          <label>Quote *</label>
+          <textarea id="fQuote" class="mf-textarea" rows="4" placeholder="Client testimonial text…" required></textarea>
+        </div>
+        <div class="mf-row">
+          <div class="mf-group">
+            <label>Initials <span style="color:var(--light-text);font-weight:400">(auto if blank)</span></label>
+            <input type="text" id="fInitials" class="mf-input" placeholder="MC" maxlength="3" />
+          </div>
+          <div class="mf-group">
+            <label>Rating (1–5)</label>
+            <input type="number" id="fRating" class="mf-input" min="1" max="5" step="0.1" value="5.0" />
+          </div>
+        </div>
+        <div class="mf-group">
+          <label>Status</label>
+          <select id="fStatus" class="mf-select">
+            <option value="published">Published</option>
+            <option value="hidden">Hidden</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button onclick="closeModal()" class="btn-cancel">Cancel</button>
+      <button onclick="saveItem()" class="btn-save" id="saveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toasts"></div>
+<script src="admin.js"></script>
+<script>
+let allItems = [], filtered = [], editingId = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('topbarDate').textContent =
+    new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+  loadItems();
+});
+
+async function loadItems() {
+  document.getElementById('refreshIcon').classList.add('spin');
+  try {
+    const res = await fetch('/api/admin/testimonials', { headers: authHeaders(), credentials: 'include' });
+    if (!res.ok) throw new Error();
+    allItems = await res.json();
+  } catch { allItems = []; }
+  filtered = [...allItems];
+  renderTable();
+  document.getElementById('refreshIcon').classList.remove('spin');
+}
+
+function applyFilters() {
+  const q  = (document.getElementById('tableSearch').value || '').toLowerCase();
+  const st = document.getElementById('statusFilter').value;
+  filtered = allItems.filter(r => {
+    const matchQ  = !q  || [r.client_name, r.company, r.product].some(v => (v||'').toLowerCase().includes(q));
+    const matchSt = !st || r.status === st;
+    return matchQ && matchSt;
+  });
+  renderTable();
+}
+
+function stars(rating) {
+  const n = Math.round(rating);
+  return '<span style="color:#f6ad55">' + '★'.repeat(n) + '☆'.repeat(5 - n) + `</span> <span style="font-size:.78rem;color:var(--light-text)">${rating}</span>`;
+}
+
+function renderTable() {
+  document.getElementById('tableCount').textContent = filtered.length + ' total';
+  const tbody = document.getElementById('tableBody');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="table-loading"><i class="fas fa-inbox"></i>No testimonials found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(r => `
+    <tr>
+      <td style="color:var(--light-text);font-size:.78rem">#${r.id}</td>
+      <td class="name-cell">${esc(r.client_name)}<div style="font-size:.75rem;color:var(--light-text)">${esc(r.client_role||'')}</div></td>
+      <td>${esc(r.company||'—')}</td>
+      <td>${esc(r.product||'—')}</td>
+      <td>${stars(r.rating||5)}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td>
+        <button class="btn-icon btn-icon-edit" onclick="openEdit(${r.id})" title="Edit"><i class="fas fa-pen"></i></button>
+        <button class="btn-icon btn-icon-del"  onclick="deleteItem(${r.id})" title="Delete"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openAdd() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = 'Add Testimonial';
+  document.getElementById('itemForm').reset();
+  document.getElementById('fRating').value = '5.0';
+  document.getElementById('fStatus').value = 'published';
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function openEdit(id) {
+  const r = allItems.find(x => x.id == id);
+  if (!r) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = 'Edit Testimonial';
+  document.getElementById('fName').value     = r.client_name  || '';
+  document.getElementById('fRole').value     = r.client_role  || '';
+  document.getElementById('fCompany').value  = r.company      || '';
+  document.getElementById('fProduct').value  = r.product      || '';
+  document.getElementById('fQuote').value    = r.quote        || '';
+  document.getElementById('fInitials').value = r.initials     || '';
+  document.getElementById('fRating').value   = r.rating       || 5.0;
+  document.getElementById('fStatus').value   = r.status       || 'published';
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+async function saveItem() {
+  const client_name = document.getElementById('fName').value.trim();
+  const quote       = document.getElementById('fQuote').value.trim();
+  if (!client_name || !quote) return showToast('Name and quote are required.', 'error');
+  const body = {
+    client_name,
+    client_role: document.getElementById('fRole').value.trim(),
+    company:     document.getElementById('fCompany').value.trim(),
+    product:     document.getElementById('fProduct').value.trim(),
+    quote,
+    initials:    document.getElementById('fInitials').value.trim(),
+    rating:      parseFloat(document.getElementById('fRating').value) || 5.0,
+    status:      document.getElementById('fStatus').value,
+  };
+  const url    = editingId ? `/api/admin/testimonials/${editingId}` : '/api/admin/testimonials';
+  const method = editingId ? 'PUT' : 'POST';
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json', ...authHeaders() },
+      body: JSON.stringify(body), credentials: 'include',
+    });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+    closeModal(); loadItems();
+    showToast(editingId ? 'Testimonial updated!' : 'Testimonial added!', 'success');
+  } catch (err) { showToast(err.message || 'Error saving.', 'error'); }
+  btn.disabled = false; btn.textContent = 'Save';
+}
+
+async function deleteItem(id) {
+  if (!confirm('Delete this testimonial permanently?')) return;
+  try {
+    const res = await fetch(`/api/admin/testimonials/${id}`, {
+      method: 'DELETE', headers: authHeaders(), credentials: 'include',
+    });
+    if (!res.ok) throw new Error();
+    allItems = allItems.filter(x => x.id != id);
+    applyFilters();
+    showToast('Testimonial deleted.', 'success');
+  } catch { showToast('Error deleting.', 'error'); }
+}
+</script>
+</body>
+</html>

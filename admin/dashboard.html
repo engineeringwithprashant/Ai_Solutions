@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | AI-Solutions</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ── Dashboard-specific styles ── */
+    .dash-welcome {
+      background: linear-gradient(135deg, #0a87ce 0%, #065f9e 100%);
+      border-radius: 18px;
+      padding: 28px 32px;
+      margin-bottom: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-welcome::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .dash-welcome::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 30%;
+      width: 280px; height: 280px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .dash-welcome-text h2 {
+      font-size: 1.4rem; font-weight: 700;
+      color: #fff; margin-bottom: 4px;
+    }
+    .dash-welcome-text p { font-size: .875rem; color: rgba(255,255,255,0.72); }
+    .dash-welcome-meta {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    }
+    .dash-welcome-pill {
+      background: rgba(255,255,255,0.15);
+      color: #fff; font-size: .75rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 50px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── KPI cards ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+    .kpi-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+    .kpi-card-accent {
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      border-radius: 16px 0 0 16px;
+    }
+    .kpi-icon-wrap {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+    .kpi-label { font-size: .75rem; font-weight: 600; color: #718096; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: #1a2a3a; line-height: 1; margin-bottom: 6px; }
+    .kpi-sub   { font-size: .75rem; color: #a0aec0; }
+    .kpi-trend {
+      position: absolute; top: 20px; right: 20px;
+      font-size: .72rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 50px;
+    }
+    .trend-up   { background: rgba(72,187,120,.12); color: #276749; }
+    .trend-new  { background: rgba(10,135,206,.1);  color: #0a87ce; }
+    .trend-warn { background: rgba(237,137,54,.12);  color: #c05621; }
+
+    /* ── Charts row ── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+    .chart-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 26px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .chart-card-title {
+      font-size: .9rem; font-weight: 700; color: #1a2a3a;
+      margin-bottom: 4px;
+    }
+    .chart-card-sub { font-size: .75rem; color: #a0aec0; margin-bottom: 20px; }
+    .chart-wrap { position: relative; }
+
+    /* ── Doughnut legend ── */
+    .donut-legend { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .donut-legend-item {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .8rem;
+    }
+    .donut-legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      display: inline-block; margin-right: 8px; flex-shrink: 0;
+    }
+    .donut-legend-label { color: #4a5568; display: flex; align-items: center; }
+    .donut-legend-val   { font-weight: 700; color: #1a2a3a; }
+
+    /* ── Activity + quick links row ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    /* ── Redesigned quick links ── */
+    .ql-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .ql-card {
+      display: flex; align-items: center; gap: 14px;
+      background: #f8fafc;
+      border: 1.5px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all .2s;
+    }
+    .ql-card:hover {
+      background: #fff;
+      border-color: rgba(10,135,206,.3);
+      box-shadow: 0 4px 16px rgba(10,135,206,.1);
+      transform: translateY(-2px);
+    }
+    .ql-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(10,135,206,.08);
+      color: #0a87ce;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; flex-shrink: 0;
+    }
+    .ql-label { font-size: .82rem; font-weight: 700; color: #1a2a3a; }
+    .ql-sub   { font-size: .72rem; color: #a0aec0; margin-top: 1px; }
+
+    /* ── Recent activity feed ── */
+    .activity-feed { display: flex; flex-direction: column; gap: 0; }
+    .activity-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; flex-shrink: 0; margin-top: 1px;
+    }
+    .activity-text { font-size: .8rem; color: #4a5568; line-height: 1.5; }
+    .activity-text strong { color: #1a2a3a; }
+    .activity-time { font-size: .7rem; color: #a0aec0; margin-top: 2px; }
+
+    /* ── Table redesign ── */
+    .table-card-v2 {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .table-card-v2-header {
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .table-card-v2-header h3 { font-size: .95rem; font-weight: 700; color: #1a2a3a; }
+    .tbl-search {
+      position: relative;
+    }
+    .tbl-search i {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%);
+      color: #a0aec0; font-size: .78rem;
+    }
+    .tbl-search input {
+      padding: 8px 14px 8px 34px;
+      border: 1.5px solid #e8ecf0;
+      border-radius: 50px;
+      font-size: .8rem; font-family: Poppins,sans-serif;
+      outline: none; width: 210px;
+      transition: border-color .2s;
+    }
+    .tbl-search input:focus { border-color: #0a87ce; }
+    .data-table-v2 { width: 100%; border-collapse: collapse; }
+    .data-table-v2 thead th {
+      background: #f8fafc;
+      font-size: .72rem; font-weight: 700;
+      color: #718096; text-transform: uppercase; letter-spacing: .6px;
+      padding: 12px 16px; text-align: left;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .data-table-v2 tbody tr {
+      border-bottom: 1px solid #f7f9fc;
+      transition: background .15s;
+      cursor: pointer;
+    }
+    .data-table-v2 tbody tr:hover { background: #f8fbff; }
+    .data-table-v2 tbody td {
+      padding: 13px 16px; font-size: .8rem; color: #2d3e50;
+    }
+    .data-table-v2 .td-name { font-weight: 600; }
+    .data-table-v2 .td-email { color: #718096; }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 50px;
+      font-size: .7rem; font-weight: 700;
+    }
+    .status-new      { background: rgba(10,135,206,.1);  color: #0a87ce; }
+    .status-read     { background: rgba(113,128,150,.1); color: #4a5568; }
+    .status-replied  { background: rgba(72,187,120,.12); color: #276749; }
+    .status-archived { background: rgba(160,174,192,.12);color: #718096; }
+    .tbl-pagination {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-top: 1px solid #f0f4f8;
+    }
+    .tbl-pagination span { font-size: .75rem; color: #a0aec0; }
+    .tbl-pg-btn {
+      padding: 6px 16px;
+      border: 1.5px solid #e8ecf0;
+      border-radius: 50px; background: #fff;
+      font-size: .75rem; font-family: Poppins,sans-serif;
+      cursor: pointer; transition: all .2s; color: #4a5568;
+    }
+    .tbl-pg-btn:hover:not(:disabled) { border-color: #0a87ce; color: #0a87ce; }
+    .tbl-pg-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .kpi-grid      { grid-template-columns: repeat(2,1fr); }
+      .charts-row    { grid-template-columns: 1fr; }
+      .bottom-row    { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .ql-grid  { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="../logo.png" alt="AI-Solutions" onerror="this.style.display='none'" />
+        <span><span class="ai">AI</span><span class="sol">-Solutions</span></span>
+      </div>
+      <div class="sidebar-subtitle">Admin Portal</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a href="enquiries.html"><i class="fas fa-inbox"></i> Enquiries <span id="unreadBadge" class="nav-badge hidden">0</span></a>
+      <a href="subscribers.html"><i class="fas fa-mail-bulk"></i> Newsletter</a>
+
+      <div class="sidebar-section-label">Content</div>
+      <a href="blog.html"><i class="fas fa-newspaper"></i> Blog Posts</a>
+      <a href="events-mgmt.html"><i class="fas fa-calendar-alt"></i> Events</a>
+      <a href="testimonials-mgmt.html"><i class="fas fa-star"></i> Testimonials</a>
+      <a href="team.html"><i class="fas fa-users"></i> Team Members</a>
+      <a href="gallery-mgmt.html"><i class="fas fa-images"></i> Gallery</a>
+
+      <div class="sidebar-section-label">System</div>
+      <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../home.html"><i class="fas fa-external-link-alt"></i> View site</a>
+      <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ── MAIN ── -->
+  <div class="admin-main">
+
+    <header class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-sidebar-toggle" id="sidebarToggle" aria-label="Open sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <span class="topbar-title">Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge" id="topbarDate"></span>
+        <button class="refresh-btn" id="refreshBtn" onclick="initDashboard()">
+          <i class="fas fa-rotate-right" id="refreshIcon"></i> Refresh
+        </button>
+        <div class="topbar-avatar" id="topbarAvatar"><div class="avatar-img-wrap"><img src="../logo.png" alt="A" /></div></div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Welcome Banner -->
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h2 id="welcomeHeading">Welcome back, Admin 👋</h2>
+          <p id="welcomeSub">Here's what's happening with AI-Solutions today.</p>
+        </div>
+        <div class="dash-welcome-meta">
+          <span class="dash-welcome-pill"><i class="fas fa-circle" style="font-size:.5rem;margin-right:5px;color:#4ade80"></i> System Online</span>
+          <span class="dash-welcome-pill" id="topbarDatePill"></span>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-card-accent" style="background:linear-gradient(to bottom,#0a87ce,#065f9e)"></div>
+          <div class="kpi-icon-wrap" style="background:rgba(10,135,206,.1);color:#0a87ce">
+            <i class="fas fa-inbox"></i>
+          </div>
+          <div class="kpi-label">Total Enquiries</div>
+          <div class="kpi-value" id="statTotal">—</div>
+          <div class="kpi-sub">All time submissions</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card-accent" style="background:linear-gradient(to bottom,#f59e0b,#d97706)"></div>
+          <div class="kpi-icon-wrap" style="background:rgba(245,158,11,.1);color:#d97706">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="kpi-label">Unread</div>
+          <div class="kpi-value" id="statNew" style="color:#d97706">—</div>
+          <div class="kpi-sub">Awaiting your response</div>
+          <span class="kpi-trend trend-warn" id="trendNew">New</span>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card-accent" style="background:linear-gradient(to bottom,#10b981,#059669)"></div>
+          <div class="kpi-icon-wrap" style="background:rgba(16,185,129,.1);color:#059669">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="kpi-label">Replied</div>
+          <div class="kpi-value" id="statReplied" style="color:#059669">—</div>
+          <div class="kpi-sub">Successfully responded</div>
+          <span class="kpi-trend trend-up">Done</span>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card-accent" style="background:linear-gradient(to bottom,#8b5cf6,#7c3aed)"></div>
+          <div class="kpi-icon-wrap" style="background:rgba(139,92,246,.1);color:#7c3aed">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="kpi-label">This Month</div>
+          <div class="kpi-value" id="statMonth" style="color:#7c3aed">—</div>
+          <div class="kpi-sub" id="statMonthLabel">Enquiries this month</div>
+          <span class="kpi-trend trend-new">Latest</span>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+
+        <!-- Bar chart — monthly enquiries -->
+        <div class="chart-card">
+          <div class="chart-card-title">Enquiries Over Time</div>
+          <div class="chart-card-sub">Monthly breakdown for the last 6 months</div>
+          <div class="chart-wrap" style="height:260px">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Doughnut — status breakdown -->
+        <div class="chart-card">
+          <div class="chart-card-title">Status Breakdown</div>
+          <div class="chart-card-sub">Current enquiry distribution</div>
+          <div class="chart-wrap" style="height:180px">
+            <canvas id="donutChart"></canvas>
+          </div>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+
+      </div>
+
+      <!-- Bottom row: Quick links + Activity feed -->
+      <div class="bottom-row">
+
+        <!-- Quick links -->
+        <div class="chart-card">
+          <div class="chart-card-title">Quick Access</div>
+          <div class="chart-card-sub">Jump to any section</div>
+          <div class="ql-grid">
+            <a href="enquiries.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-inbox"></i></div>
+              <div><div class="ql-label">Enquiries</div><div class="ql-sub">View all contact forms</div></div>
+            </a>
+            <a href="subscribers.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-mail-bulk"></i></div>
+              <div><div class="ql-label">Newsletter</div><div class="ql-sub" id="qlSubs">Active subscribers</div></div>
+            </a>
+            <a href="blog.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-newspaper"></i></div>
+              <div><div class="ql-label">Blog Posts</div><div class="ql-sub" id="qlBlog">Published posts</div></div>
+            </a>
+            <a href="events-mgmt.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-calendar-alt"></i></div>
+              <div><div class="ql-label">Events</div><div class="ql-sub" id="qlEvents">Upcoming events</div></div>
+            </a>
+            <a href="testimonials-mgmt.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-star"></i></div>
+              <div><div class="ql-label">Testimonials</div><div class="ql-sub">Client reviews</div></div>
+            </a>
+            <a href="team.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-users"></i></div>
+              <div><div class="ql-label">Team</div><div class="ql-sub">Manage members</div></div>
+            </a>
+            <a href="gallery-mgmt.html" class="ql-card">
+              <div class="ql-icon"><i class="fas fa-images"></i></div>
+              <div><div class="ql-label">Gallery</div><div class="ql-sub">Photo gallery</div></div>
+            </a>
+            <a href="../home.html" target="_blank" class="ql-card">
+              <div class="ql-icon" style="background:rgba(16,185,129,.08);color:#059669"><i class="fas fa-external-link-alt"></i></div>
+              <div><div class="ql-label">View Site</div><div class="ql-sub">Open live website</div></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="chart-card">
+          <div class="chart-card-title">Recent Enquiries</div>
+          <div class="chart-card-sub">Latest 5 submissions</div>
+          <div class="activity-feed" id="activityFeed">
+            <div style="text-align:center;padding:24px;color:#a0aec0;font-size:.8rem">
+              <i class="fas fa-circle-notch fa-spin" style="margin-bottom:8px;display:block;font-size:1.2rem"></i>
+              Loading…
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Enquiries Table -->
+      <div class="table-card-v2">
+        <div class="table-card-v2-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <h3>All Enquiries</h3>
+            <span class="badge" id="tableCount" style="background:rgba(10,135,206,.1);color:#0a87ce;padding:3px 10px;border-radius:50px;font-size:.72rem;font-weight:700">0 total</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <div class="tbl-search">
+              <i class="fas fa-search"></i>
+              <input type="text" id="tableSearch" placeholder="Search enquiries…" oninput="filterTable(this.value)" />
+            </div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table class="data-table-v2" id="enquiriesTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Country</th>
+                <th>Job Title</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="enquiriesBody">
+              <tr>
+                <td colspan="8" style="text-align:center;padding:40px;color:#a0aec0;font-size:.85rem">
+                  <i class="fas fa-circle-notch fa-spin" style="display:block;font-size:1.4rem;margin-bottom:10px"></i>
+                  Loading enquiries…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tbl-pagination">
+          <span id="paginationInfo">Showing 0–0 of 0</span>
+          <div style="display:flex;gap:8px">
+            <button id="prevPage" class="tbl-pg-btn" onclick="changePage(-1)" disabled>← Prev</button>
+            <button id="nextPage" class="tql-pg-btn tbl-pg-btn" onclick="changePage(1)">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail modal -->
+      <div id="detailModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:20px">
+        <div style="background:#fff;border-radius:18px;padding:32px;max-width:540px;width:100%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+          <button onclick="closeDetail()" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;font-size:1.2rem;color:#a0aec0"><i class="fas fa-times"></i></button>
+          <h3 style="margin-bottom:18px;color:#1a2a3a;font-size:1rem" id="modalTitle">Enquiry Detail</h3>
+          <div id="modalContent"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+<script>
+/* ── Dashboard Charts & Activity Feed ── */
+(function () {
+
+  /* ── build last 6 month labels ── */
+  function last6Months() {
+    const labels = [], now = new Date();
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      labels.push(d.toLocaleString('en-GB', { month: 'short', year: '2-digit' }));
+    }
+    return labels;
+  }
+
+  /* ── count enquiries per month from data ── */
+  function countByMonth(data) {
+    const now  = new Date();
+    const counts = Array(6).fill(0);
+    data.forEach(function(e) {
+      const d   = new Date(e.created_at);
+      const diff = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+      if (diff >= 0 && diff < 6) counts[5 - diff]++;
+    });
+    return counts;
+  }
+
+  /* ── bar chart ── */
+  var barChartInst = null;
+  function renderBarChart(data) {
+    const ctx    = document.getElementById('barChart').getContext('2d');
+    const labels = last6Months();
+    const counts = countByMonth(data);
+    if (barChartInst) barChartInst.destroy();
+    barChartInst = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Enquiries',
+          data:  counts,
+          backgroundColor: counts.map((_, i) =>
+            i === counts.length - 1
+              ? 'rgba(10,135,206,0.9)'
+              : 'rgba(10,135,206,0.25)'
+          ),
+          borderColor:     'transparent',
+          borderRadius:    8,
+          borderSkipped:   false,
+          hoverBackgroundColor: 'rgba(10,135,206,0.85)',
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a2a3a',
+            titleFont: { family: 'Poppins', size: 12 },
+            bodyFont:  { family: 'Poppins', size: 12 },
+            padding: 10, cornerRadius: 8,
+            callbacks: { label: ctx => ` ${ctx.parsed.y} enquiries` },
+          },
+        },
+        scales: {
+          x: {
+            grid:  { display: false },
+            ticks: { font: { family: 'Poppins', size: 11 }, color: '#718096' },
+            border:{ display: false },
+          },
+          y: {
+            grid:  { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+            ticks: { font: { family: 'Poppins', size: 11 }, color: '#718096', padding: 8,
+                     stepSize: 1, precision: 0 },
+            border:{ display: false },
+          },
+        },
+      },
+    });
+  }
+
+  /* ── doughnut chart ── */
+  var donutInst = null;
+  function renderDonut(stats) {
+    const ctx    = document.getElementById('donutChart').getContext('2d');
+    const total  = stats.total || 1;
+    const replied  = stats.replied  || 0;
+    const newCount = stats.new      || 0;
+    const read     = total - replied - newCount;
+
+    const values = [newCount, read > 0 ? read : 0, replied];
+    const labels = ['Unread', 'Read', 'Replied'];
+    const colors = ['#f59e0b', '#0a87ce', '#10b981'];
+
+    if (donutInst) donutInst.destroy();
+    donutInst = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors,
+          borderWidth: 3,
+          borderColor: '#fff',
+          hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        cutout: '72%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a2a3a',
+            titleFont: { family: 'Poppins', size: 12 },
+            bodyFont:  { family: 'Poppins', size: 12 },
+            padding: 10, cornerRadius: 8,
+          },
+        },
+      },
+    });
+
+    /* Custom legend */
+    const legend = document.getElementById('donutLegend');
+    legend.innerHTML = labels.map(function(label, i) {
+      const pct = total > 0 ? Math.round((values[i] / stats.total) * 100) : 0;
+      return `<div class="donut-legend-item">
+        <span class="donut-legend-label">
+          <span class="donut-legend-dot" style="background:${colors[i]}"></span>${label}
+        </span>
+        <span class="donut-legend-val">${values[i]} <span style="color:#a0aec0;font-weight:400">(${pct}%)</span></span>
+      </div>`;
+    }).join('');
+  }
+
+  /* ── activity feed from last 5 enquiries ── */
+  function renderActivity(data) {
+    const feed  = document.getElementById('activityFeed');
+    const items = data.slice(0, 5);
+    if (!items.length) {
+      feed.innerHTML = '<div style="text-align:center;padding:24px;color:#a0aec0;font-size:.8rem">No enquiries yet.</div>';
+      return;
+    }
+    const colorMap = {
+      new:      { bg: 'rgba(245,158,11,.1)',   color: '#d97706', icon: 'fa-bell' },
+      read:     { bg: 'rgba(10,135,206,.1)',   color: '#0a87ce', icon: 'fa-envelope-open' },
+      replied:  { bg: 'rgba(16,185,129,.1)',   color: '#059669', icon: 'fa-check' },
+      archived: { bg: 'rgba(160,174,192,.1)', color: '#718096', icon: 'fa-archive' },
+    };
+    feed.innerHTML = items.map(function(e) {
+      const status = e.status || 'new';
+      const c      = colorMap[status] || colorMap.new;
+      const name   = e.name || (e.first_name + ' ' + (e.last_name || '')).trim();
+      const ago    = timeAgo(e.created_at);
+      return `<div class="activity-item">
+        <div class="activity-dot" style="background:${c.bg};color:${c.color}">
+          <i class="fas ${c.icon}"></i>
+        </div>
+        <div>
+          <div class="activity-text"><strong>${name}</strong> submitted an enquiry</div>
+          <div class="activity-time">${ago} · ${e.company || e.email || ''}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function timeAgo(dateStr) {
+    const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+    if (diff < 60)         return 'just now';
+    if (diff < 3600)       return Math.floor(diff / 60) + 'm ago';
+    if (diff < 86400)      return Math.floor(diff / 3600) + 'h ago';
+    if (diff < 2592000)    return Math.floor(diff / 86400) + 'd ago';
+    return new Date(dateStr).toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+  }
+
+  /* ── hook into the existing initDashboard flow ── */
+  var _origInit = window.initDashboard;
+  window.initDashboard = async function () {
+    if (_origInit) await _origInit();
+
+    /* Set welcome heading + date pill from JWT */
+    try {
+      const tok = sessionStorage.getItem('ais_admin_token');
+      const payload = tok ? JSON.parse(atob(tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))) : {};
+      const heading = document.getElementById('welcomeHeading');
+      if (heading && payload.name) heading.textContent = 'Welcome back, ' + payload.name + ' 👋';
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+      const dateBadge = document.getElementById('topbarDate');
+      if (dateBadge && !dateBadge.textContent.trim()) dateBadge.textContent = dateStr;
+      const datePill = document.getElementById('topbarDatePill');
+      if (datePill && !datePill.textContent.trim()) datePill.textContent = dateStr;
+    } catch (_) {}
+
+    /* fetch enquiries for charts */
+    try {
+      const token = sessionStorage.getItem('ais_admin_token');
+      const hdrs  = token ? { Authorization: 'Bearer ' + token } : {};
+
+      const [statsRes, enqRes] = await Promise.all([
+        fetch('/api/admin/stats',     { headers: hdrs }),
+        fetch('/api/admin/enquiries', { headers: hdrs }),
+      ]);
+
+      if (statsRes.ok) {
+        const s = await statsRes.json();
+        renderDonut(s);
+      }
+      if (enqRes.ok) {
+        const rows = await enqRes.json();
+        /* Always sync the table globals so the enquiries table renders */
+        if (Array.isArray(rows)) {
+          _enqAll      = rows;
+          _enqFiltered = rows.slice();
+          _enqPage     = 1;
+        }
+        renderBarChart(rows);
+        renderActivity(rows);
+        if (typeof renderTable === 'function') renderTable();
+      }
+    } catch (err) {
+      /* fallback: render empty charts */
+      renderBarChart([]);
+      renderDonut({ total: 0, new: 0, replied: 0 });
+    }
+  };
+
+  /* auto-trigger after admin.js DOMContentLoaded has fired */
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+      if (window.initDashboard) window.initDashboard();
+    }, 120);
+  });
+
+})();
+</script>
+
+</body>
+</html>

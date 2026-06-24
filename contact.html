@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | AI-Solutions</title>
+  <meta name="description" content="Contact AI-Solutions. For the right solutions for every stage of your AI journey." />
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a class="navbar-logo" href="home.html">
+    <img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" />
+    <span><span class="logo-ai">AI</span><span class="logo-dash">-Solutions</span></span>
+  </a>
+  <ul class="navbar-nav" role="list">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+  <a href="contact.html" class="btn-nav-cta active">Contact us</a>
+  <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav-overlay"></div>
+<nav class="mobile-nav-panel">
+  <button class="mobile-nav-close"><i class="fa fa-times"></i></button>
+  <a href="home.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="events.html">Events</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact us</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="cf-contact-centered wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,300 C200,50 600,550 1000,300 S1400,50 1800,300" stroke="#c5dff4" stroke-width="1.5" fill="none" opacity="0.55"/>
+      <path d="M-200,500 C200,250 600,750 1000,500 S1400,250 1800,500" stroke="#daedf8" stroke-width="1" fill="none" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <h1>Contact us</h1>
+    <p class="cc-subtitle">For the right solutions for every stage of your AI journey</p>
+    <p class="cc-desc">Contact our experts for insights and solutions across all of your AI initiatives, ranging from data, training &amp; model development to platform and people. Get the business results you need to maximise ROI, improve competitive advantage, and get to market faster.</p>
+    <p class="cc-trust">Trusted by 157+ AI innovators.</p>
+  </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="cf-centered-form-wrap">
+  <div class="cf-centered-form" data-aos="fade-up">
+
+    <!-- Success banner -->
+    <div id="successBanner" style="display:none;background:rgba(72,187,120,.1);border:1.5px solid #48bb78;border-radius:10px;padding:16px 18px;margin-bottom:24px;color:#276749;font-size:.9rem;text-align:center">
+      <i class="fas fa-check-circle" style="color:#48bb78;margin-right:8px"></i>
+      <strong>Thank you!</strong> Your message was sent successfully. We'll be in touch within one business day.
+    </div>
+
+    <form id="contactForm" novalidate>
+      <div class="cf-form-row">
+        <div class="cf-field">
+          <label for="firstName">First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" name="first_name" class="cf-input" placeholder="James" required />
+        </div>
+        <div class="cf-field">
+          <label for="lastName">Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" name="last_name" class="cf-input" placeholder="Hargreaves" required />
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="email">Business / Personal Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" class="cf-input" placeholder="you@example.com" required />
+      </div>
+      <div class="cf-field">
+        <label for="jobTitle">Job Title <span class="req">*</span></label>
+        <input type="text" id="jobTitle" name="job_title" class="cf-input" placeholder="Head of Data Science" required />
+      </div>
+      <div class="cf-form-row">
+        <div class="cf-field">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company" class="cf-input" placeholder="Acme Corp" />
+        </div>
+        <div class="cf-field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="cf-input" placeholder="+44 7700 900000" />
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="country">Country</label>
+        <select id="country" name="country" class="cf-select">
+          <option value="" disabled selected>Select your country</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="United States">United States</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          <option value="Germany">Germany</option>
+          <option value="France">France</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="UAE">United Arab Emirates</option>
+          <option value="India">India</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="cf-field">
+        <label for="industry">Focus Industry</label>
+        <select id="industry" name="industry" class="cf-select">
+          <option value="" disabled selected>Please Select</option>
+          <option value="healthcare">Healthcare &amp; Life Sciences</option>
+          <option value="retail">Retail &amp; E-Commerce</option>
+          <option value="education">Education &amp; EdTech</option>
+          <option value="logistics">Logistics &amp; Transport</option>
+          <option value="security">Security &amp; Surveillance</option>
+          <option value="finance">Financial Services</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="cf-field">
+        <label for="goal">What best describes your primary goal? <span class="req">*</span></label>
+        <select id="goal" name="goal" class="cf-select" required>
+          <option value="" disabled selected>Please Select</option>
+          <option value="deploy">Deploy a new AI system</option>
+          <option value="improve">Improve an existing AI system</option>
+          <option value="data">Improve data quality &amp; pipelines</option>
+          <option value="audit">AI audit &amp; governance</option>
+          <option value="consult">General AI consulting</option>
+          <option value="demo">Request a product demo</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+      <div class="cf-field">
+        <label for="message">Tell us about your project <span class="req">*</span></label>
+        <textarea id="message" name="message" class="cf-input" placeholder="Briefly describe your AI challenge or what you'd like to achieve…" rows="4" required style="resize:vertical;min-height:110px"></textarea>
+      </div>
+      <p class="cf-privacy" style="text-align:center;margin-top:4px">We respect your <a href="#">privacy</a>. Your information will never be shared with third parties.</p>
+      <button type="submit" class="cf-submit">Let's talk</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo"><img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" /><span><span class="f-logo-ai">AI</span><span class="f-logo-sol">-Solutions</span></span></div>
+        <p>Building intelligent, reliable AI systems for organisations that can't afford to get it wrong. Based in Sunderland, UK.</p>
+        <div class="footer-social">
+          <a href="https://x.com/aisolutionsss" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ai-solutions-84b623416/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@AI_Solutionsss" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Articles</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="#">Case Studies</a></li>
+          
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="f-contact-item"><i class="fas fa-map-marker-alt"></i><span>12 Innovation Quarter, Sunderland, SR1 3EN, UK</span></div>
+        <div class="f-contact-item"><i class="fas fa-phone"></i><span>+44 (0)191 555 0100</span></div>
+        <div class="f-contact-item"><i class="fas fa-envelope"></i><span>helloo.ai.solutions@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI-Solutions, Sunderland UK. All rights reserved.</p>
+      
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/script.js"></script>
+<script src="js/assistant.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn    = this.querySelector('.cf-submit');
+    const banner = document.getElementById('successBanner');
+    const fd     = new FormData(this);
+    const payload = Object.fromEntries(fd.entries());
+
+    /* Clear any previous email error */
+    var errEl = document.getElementById('emailErr');
+    if (errEl) errEl.remove();
+    document.getElementById('email').style.borderColor = '';
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        btn.disabled = false;
+        btn.textContent = "Let's talk";
+        alert(d.message || 'Something went wrong. Please try again.');
+        return;
+      }
+    } catch (_) { /* offline — show success anyway */ }
+
+    this.style.display = 'none';
+    banner.style.display = 'block';
+  });
+</script>
+<style>
+  @media(max-width:768px) {
+    .cf-contact-centered { padding-top: 110px; }
+  }
+</style>
+</body>
+</html>

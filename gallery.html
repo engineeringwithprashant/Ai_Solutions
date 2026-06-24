@@ -1,0 +1,680 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery &amp; Events | AI-Solutions</title>
+  <meta name="description" content="Photo gallery and upcoming events from AI-Solutions — conferences, workshops, product launches, and community meetups." />
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation">
+  <a class="navbar-logo" href="home.html">
+    <img src="logo.png" alt="AI-Solutions logo" onerror="this.style.display='none'" />
+    <span><span class="logo-ai">AI</span><span class="logo-dash">-Solutions</span></span>
+  </a>
+  <ul class="navbar-nav">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+  </ul>
+  <a href="contact.html" class="btn-nav-cta">Contact us</a>
+  <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav-overlay"></div>
+<nav class="mobile-nav-panel">
+  <button class="mobile-nav-close"><i class="fa fa-times"></i></button>
+  <a href="home.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="events.html">Events</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,250 C200,50 600,450 1000,250 S1400,50 1800,250" stroke="#c5dff4" stroke-width="1.4" fill="none" opacity="0.6"/>
+      <path d="M-200,350 C200,150 600,550 1000,350 S1400,150 1800,350" stroke="#d0e8f5" stroke-width="1" fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+  <div class="container">
+    <span class="section-tag" data-aos="fade-down">Gallery &amp; Events</span>
+    <h1 data-aos="fade-up">Behind the scenes at <span class="accent">AI-Solutions</span></h1>
+    <p data-aos="fade-up" data-aos-delay="80">Snapshots from our events, workshops, product launches, and team milestones — plus upcoming events you can be part of.</p>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">Photo Gallery</span>
+      <h2>Moments that <span class="accent">matter</span></h2>
+      <p>Click any image to view full size.</p>
+    </div>
+
+    <!-- 3D ROTATING CARD CAROUSEL -->
+    <div class="gc-section" data-aos="fade-up" data-aos-delay="60">
+      <div class="gc-wrapper">
+        <div class="gc-inner" style="--quantity: 9;">
+          <div class="gc-card" style="--index: 0; --color-card: 142, 252, 204;"><div class="gc-img" style="background-image:url('yoga.jpg')"></div></div>
+          <div class="gc-card" style="--index: 1; --color-card: 142, 252, 157;"><div class="gc-img" style="background-image:url('health.jpg')"></div></div>
+          <div class="gc-card" style="--index: 2; --color-card: 215, 252, 142;"><div class="gc-img" style="background-image:url('aid.jpg')"></div></div>
+          <div class="gc-card" style="--index: 3; --color-card: 252, 252, 142;"><div class="gc-img" style="background-image:url('community.jpg')"></div></div>
+          <div class="gc-card" style="--index: 4; --color-card: 252, 208, 142;"><div class="gc-img" style="background-image:url('hiking.jpg')"></div></div>
+          <div class="gc-card" style="--index: 5; --color-card: 252, 142, 142;"><div class="gc-img" style="background-image:url('donation.jpg')"></div></div>
+          <div class="gc-card" style="--index: 6; --color-card: 252, 142, 239;"><div class="gc-img" style="background-image:url('meeting.jpg')"></div></div>
+          <div class="gc-card" style="--index: 7; --color-card: 204, 142, 252;"><div class="gc-img" style="background-image:url('Look.jpg')"></div></div>
+          <div class="gc-card" style="--index: 8; --color-card: 142, 202, 252;"><div class="gc-img" style="background-image:url('Picnic.jpg')"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid" data-aos="fade-up" data-aos-delay="80">
+
+      <!-- Gallery items — using coloured placeholder tiles with icons since no actual images are supplied.
+           Replace the .gallery-placeholder divs with <img src="path/to/photo.jpg" alt="..." /> when photos are available. -->
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <i class="fas fa-users"></i>
+          <span>AI Summit 2026</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(10,135,206,0.15),rgba(31,137,222,0.28))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <span>Workshop — Manchester</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(31,137,222,0.12),rgba(45,62,80,0.18))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-rocket"></i>
+          <span>Product Launch</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(31,137,222,0.2),rgba(10,135,206,0.1))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-laptop-code"></i>
+          <span>Hackathon Day</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(31,137,222,0.22))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-award"></i>
+          <span>Tech Awards Gala</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(45,62,80,0.1),rgba(31,137,222,0.18))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-handshake"></i>
+          <span>Client Partnership</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(31,137,222,0.14),rgba(10,135,206,0.24))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-city"></i>
+          <span>Sunderland HQ</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(10,135,206,0.18),rgba(31,137,222,0.12))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-microphone"></i>
+          <span>Keynote Speech</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gallery-item" style="background:linear-gradient(135deg,rgba(31,137,222,0.17),rgba(45,62,80,0.12))">
+        <div class="gallery-placeholder">
+          <i class="fas fa-people-group"></i>
+          <span>Team Offsite 2025</span>
+        </div>
+        <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+
+    </div><!-- /.gallery-grid -->
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS -->
+<section class="section wave-bg" style="background:#fff">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,300 C300,100 700,500 1100,300 S1500,100 1800,300" stroke="#c8e3f3" stroke-width="1.1" fill="none" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start" class="events-layout">
+
+      <!-- Left: upcoming events list -->
+      <div>
+        <div class="section-header" style="text-align:left;margin-bottom:36px" data-aos="fade-up">
+          <span class="section-tag">Upcoming Events</span>
+          <h2>Join us <span class="accent">in person</span></h2>
+          <p style="margin:0;text-align:left">Conferences, workshops, and webinars where you can meet the AI-Solutions team.</p>
+        </div>
+
+        <div class="events-list" id="eventsList" data-aos="fade-up" data-aos-delay="80">
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">18</div>
+              <div class="month">Jul</div>
+            </div>
+            <div class="event-info">
+              <h4>AI &amp; Enterprise Summit — London</h4>
+              <p>ExCeL London | 09:00 – 18:00 BST</p>
+              <span class="event-tag">Conference</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">05</div>
+              <div class="month">Aug</div>
+            </div>
+            <div class="event-info">
+              <h4>AI in Healthcare Workshop — Sunderland HQ</h4>
+              <p>12 Innovation Quarter, SR1 3EN | 10:00 – 16:00 BST</p>
+              <span class="event-tag">Workshop</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">22</div>
+              <div class="month">Aug</div>
+            </div>
+            <div class="event-info">
+              <h4>Responsible AI Webinar — Online</h4>
+              <p>Zoom | 14:00 – 15:30 BST | Free to attend</p>
+              <span class="event-tag">Webinar</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">10</div>
+              <div class="month">Sep</div>
+            </div>
+            <div class="event-info">
+              <h4>North East Tech Festival — Newcastle</h4>
+              <p>Sage Gateshead | All day</p>
+              <span class="event-tag">Festival</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">04</div>
+              <div class="month">Oct</div>
+            </div>
+            <div class="event-info">
+              <h4>AI-Solutions Annual Showcase — Sunderland</h4>
+              <p>Stadium of Light Conference Centre | 18:00 BST</p>
+              <span class="event-tag">Showcase</span>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="day">19</div>
+              <div class="month">Nov</div>
+            </div>
+            <div class="event-info">
+              <h4>Global AI Summit — Online</h4>
+              <p>Virtual | 10:00 – 17:00 GMT | Register free</p>
+              <span class="event-tag">Conference</span>
+            </div>
+          </div>
+
+        </div><!-- /.events-list -->
+      </div>
+
+      <!-- Right: register CTA card -->
+      <div data-aos="fade-up" data-aos-delay="120">
+        <div style="background:var(--blue);border-radius:20px;padding:40px 36px;color:#fff;position:sticky;top:120px">
+          <i class="fas fa-calendar-plus" style="font-size:2.2rem;margin-bottom:18px;opacity:0.85"></i>
+          <h3 style="color:#fff;font-size:1.3rem;margin-bottom:12px">Attend an event</h3>
+          <p style="color:rgba(255,255,255,0.85);font-size:.9rem;line-height:1.75;margin-bottom:24px">Whether you're an AI practitioner, business leader, or student — our events are open to everyone curious about what's possible with AI.</p>
+          <a href="contact.html" class="btn btn-white" style="width:100%;justify-content:center;margin-bottom:14px">Register interest</a>
+          <p style="font-size:.78rem;color:rgba(255,255,255,0.65);text-align:center">We'll send you event details and updates.</p>
+        </div>
+      </div>
+
+    </div><!-- /.events-layout -->
+  </div>
+</section>
+
+<!-- GALLERY LIGHTBOX -->
+<div id="galleryLightbox" class="gl-backdrop" role="dialog" aria-modal="true">
+  <button class="gl-close" id="glClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <button class="gl-arrow gl-prev" id="glPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <button class="gl-arrow gl-next" id="glNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  <div class="gl-stage">
+    <div class="gl-visual" id="glVisual"></div>
+    <div class="gl-meta">
+      <p class="gl-caption" id="glCaption"></p>
+      <span class="gl-counter" id="glCounter"></span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<section class="cta-band wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,150 C300,-50 700,350 1100,150 S1500,-50 1800,150" stroke="#c8e3f3" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <h2>Want to <span style="color:var(--blue)">collaborate or sponsor?</span></h2>
+    <p>Partner with AI-Solutions at our upcoming events to reach a targeted audience of AI decision-makers.</p>
+    <a href="contact.html" class="btn btn-primary btn-arrow">Get in touch</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo"><img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" /><span><span class="f-logo-ai">AI</span><span class="f-logo-sol">-Solutions</span></span></div>
+        <p>Building intelligent, reliable AI systems for organisations that can't afford to get it wrong. Based in Sunderland, UK.</p>
+        <div class="footer-social">
+          <a href="https://x.com/aisolutionsss" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ai-solutions-84b623416/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@AI_Solutionsss" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="home.html">About Us</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="gallery.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Articles</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Documentation</a></li>
+          
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="f-contact-item"><i class="fas fa-map-marker-alt"></i><span>12 Innovation Quarter, Sunderland, SR1 3EN, UK</span></div>
+        <div class="f-contact-item"><i class="fas fa-phone"></i><span>+44 (0)191 555 0100</span></div>
+        <div class="f-contact-item"><i class="fas fa-envelope"></i><span>helloo.ai.solutions@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI-Solutions, Sunderland UK. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/script.js"></script>
+<script src="js/assistant.js"></script>
+<script>
+(async function() {
+  function xe(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* ── Gallery items ── */
+  try {
+    const data = await fetch('/api/admin/public/gallery').then(r=>r.json());
+    if (Array.isArray(data) && data.length) {
+      document.getElementById('galleryGrid').innerHTML = data.map(item => {
+        const img = item.image_url && item.image_url.trim();
+        return `<div class="gallery-item">
+          ${img
+            ? `<img src="${xe(img)}" alt="${xe(item.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`
+            : `<div class="gallery-placeholder"><i class="fas fa-image"></i><span>${xe(item.title)}</span></div>`}
+          <div class="gallery-overlay"><i class="fas fa-expand"></i><span style="font-size:.75rem;margin-top:4px;display:block">${xe(item.title)}</span></div>
+        </div>`;
+      }).join('');
+    }
+  } catch(e) { /* keep static fallback */ }
+
+  /* ── Upcoming events ── */
+  try {
+    const data = await fetch('/api/admin/public/events').then(r=>r.json());
+    const upcoming = data.filter(e => !e.is_past);
+    if (Array.isArray(upcoming) && upcoming.length) {
+      document.getElementById('eventsList').innerHTML = upcoming.map(ev => {
+        const d = new Date(ev.event_date);
+        const day = d.getDate().toString().padStart(2,'0');
+        const mon = d.toLocaleString('en-GB',{month:'short'});
+        return `<div class="event-item">
+          <div class="event-date-box"><div class="day">${day}</div><div class="month">${mon}</div></div>
+          <div class="event-info">
+            <h4>${xe(ev.title)}</h4>
+            <p>${xe(ev.location||'')}${ev.time_info?' | '+xe(ev.time_info):''}</p>
+            <span class="event-tag">${xe(ev.type||'Event')}</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+  } catch(e) { /* keep static fallback */ }
+})();
+</script>
+<style>
+  @media(max-width:768px){
+    .events-layout{ grid-template-columns:1fr !important; }
+    .events-layout > div:last-child > div { position:static !important; }
+  }
+
+  /* ── 3D Gallery Carousel ── */
+  .gc-section {
+    margin: 48px 0 56px;
+    width: 100%;
+  }
+  .gc-wrapper {
+    width: 100%;
+    height: 500px;
+    background: transparent;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .gc-inner {
+    --w: 130px;
+    --h: 195px;
+    --translateZ: calc(var(--w) + var(--h));
+    --rotateX: -15deg;
+    --perspective: 1000px;
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    top: 25%;
+    left: calc(50% - (var(--w) / 2) - 2.5px);
+    z-index: 2;
+    transform-style: preserve-3d;
+    transform: perspective(var(--perspective));
+    animation: gc-spin 20s linear infinite;
+  }
+  @keyframes gc-spin {
+    from { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0deg); }
+    to   { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(360deg); }
+  }
+  .gc-wrapper:hover .gc-inner { animation-play-state: paused; }
+  .gc-card {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(var(--color-card), 0.9);
+    border-radius: 14px;
+    overflow: hidden;
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+               translateZ(var(--translateZ));
+  }
+  .gc-img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+  }
+  .gc-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle,
+      rgba(var(--color-card), 0.12) 0%,
+      rgba(var(--color-card), 0.46) 70%,
+      rgba(var(--color-card), 0.85) 100%
+    );
+  }
+  @media(max-width:600px) {
+    .gc-wrapper { height: 360px; }
+    .gc-inner { --w: 90px; --h: 135px; }
+  }
+
+  /* ── Gallery Lightbox ── */
+  .gallery-item { cursor: pointer; }
+
+  .gl-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 12, 28, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+  }
+  .gl-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .gl-stage {
+    width: min(88vw, 820px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    animation: glIn .34s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes glIn {
+    from { transform: scale(.9); opacity: 0; }
+    to   { transform: scale(1);  opacity: 1; }
+  }
+  .gl-visual {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(31,137,222,.15), rgba(10,135,206,.28));
+    position: relative;
+  }
+  .gl-visual img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .gl-visual .gl-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; width: 100%; height: 100%;
+    color: rgba(10,135,206,.9);
+  }
+  .gl-visual .gl-ph i   { font-size: 5rem; }
+  .gl-visual .gl-ph span { font-size: 1.1rem; font-weight: 600; color: rgba(255,255,255,.75); }
+  .gl-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
+    padding: 0 4px;
+  }
+  .gl-caption {
+    color: rgba(255,255,255,.82);
+    font-size: .92rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  .gl-counter {
+    color: rgba(255,255,255,.4);
+    font-size: .8rem;
+    white-space: nowrap;
+  }
+  .gl-close {
+    position: fixed;
+    top: 22px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.18);
+    color: #fff; font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+    z-index: 10000;
+  }
+  .gl-close:hover { background: rgba(255,255,255,.22); transform: scale(1.08); }
+  .gl-arrow {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    color: #fff; font-size: 1.1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+    z-index: 10000;
+  }
+  .gl-prev { left: 20px; }
+  .gl-next { right: 20px; }
+  .gl-arrow:hover { background: rgba(10,135,206,.65); border-color: transparent; transform: translateY(-50%) scale(1.08); }
+  @media(max-width:600px) {
+    .gl-arrow { display: none; }
+    .gl-stage { width: 94vw; }
+  }
+</style>
+<script>
+(function () {
+  var lb      = document.getElementById('galleryLightbox');
+  var visual  = document.getElementById('glVisual');
+  var caption = document.getElementById('glCaption');
+  var counter = document.getElementById('glCounter');
+  var current = 0;
+
+  function items() {
+    return Array.from(document.querySelectorAll('#galleryGrid .gallery-item'));
+  }
+
+  function getTitle(el) {
+    var s = el.querySelector('.gallery-overlay span, .gallery-placeholder span');
+    return s ? s.textContent.trim() : '';
+  }
+
+  function renderSlide(el) {
+    visual.innerHTML = '';
+    visual.style.background = '';
+
+    var img = el.querySelector('img');
+    if (img) {
+      var i = document.createElement('img');
+      i.src = img.src;
+      i.alt = getTitle(el);
+      visual.appendChild(i);
+    } else {
+      /* Placeholder — recreate enlarged version */
+      var ph = el.querySelector('.gallery-placeholder');
+      var bg = el.style.background || 'linear-gradient(135deg,rgba(31,137,222,.14),rgba(10,135,206,.26))';
+      visual.style.background = bg;
+      var div = document.createElement('div');
+      div.className = 'gl-ph';
+      var icon = (ph && ph.querySelector('i')) ? ph.querySelector('i').className : 'fas fa-image';
+      div.innerHTML = '<i class="' + icon + '"></i><span>' + getTitle(el) + '</span>';
+      visual.appendChild(div);
+    }
+
+    var list  = items();
+    caption.textContent = getTitle(el);
+    counter.textContent = (list.indexOf(el) + 1) + ' / ' + list.length;
+  }
+
+  function open(idx) {
+    var list = items();
+    if (!list.length) return;
+    current = ((idx % list.length) + list.length) % list.length;
+    renderSlide(list[current]);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function step(dir) {
+    current = ((current + dir + items().length) % items().length);
+    renderSlide(items()[current]);
+  }
+
+  /* Event delegation — handles static + API-loaded items */
+  document.getElementById('galleryGrid').addEventListener('click', function (e) {
+    var item = e.target.closest('.gallery-item');
+    if (!item) return;
+    open(items().indexOf(item));
+  });
+
+  document.getElementById('glClose').addEventListener('click', close);
+  document.getElementById('glPrev').addEventListener('click', function () { step(-1); });
+  document.getElementById('glNext').addEventListener('click', function () { step(1); });
+
+  /* Close on backdrop click */
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+
+  /* Keyboard */
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+
+  /* Touch swipe */
+  var touchX = null;
+  lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    touchX = null;
+  });
+})();
+</script>
+</body>
+</html>

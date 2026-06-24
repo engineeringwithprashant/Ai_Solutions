@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog &amp; Articles | AI-Solutions</title>
+  <meta name="description" content="Insights, research, and thought leadership from the AI-Solutions team on enterprise AI, deployment strategies, and the future of intelligent systems." />
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation">
+  <a class="navbar-logo" href="home.html">
+    <img src="logo.png" alt="AI-Solutions logo" onerror="this.style.display='none'" />
+    <span><span class="logo-ai">AI</span><span class="logo-dash">-Solutions</span></span>
+  </a>
+  <ul class="navbar-nav">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+  <a href="contact.html" class="btn-nav-cta">Contact us</a>
+  <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav-overlay"></div>
+<nav class="mobile-nav-panel">
+  <button class="mobile-nav-close"><i class="fa fa-times"></i></button>
+  <a href="home.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="events.html">Events</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,250 C200,50 600,450 1000,250 S1400,50 1800,250" stroke="#c5dff4" stroke-width="1.4" fill="none" opacity="0.6"/>
+      <path d="M-200,350 C200,150 600,550 1000,350 S1400,150 1800,350" stroke="#d0e8f5" stroke-width="1" fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+  <div class="container">
+    <span class="section-tag" data-aos="fade-down">Insights &amp; Resources</span>
+    <h1 data-aos="fade-up">The AI-Solutions <span class="accent">Blog</span></h1>
+    <p data-aos="fade-up" data-aos-delay="80">Thought leadership, product updates, and practical guidance for enterprise AI teams.</p>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+<section class="section" style="padding-top:40px">
+  <div class="container">
+    <div data-aos="fade-up" data-btitle="Why production AI fails and how to build systems that don't" data-bcat="AI Strategy" data-bdate="4 June 2026" style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-md);display:grid;grid-template-columns:1fr 1fr;margin-bottom:56px" class="featured-post-grid">
+      <!-- Image side -->
+      <div style="min-height:320px;overflow:hidden">
+        <img src="Article.webp" alt="Featured Article" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .45s ease" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <!-- Content side -->
+      <div style="padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:14px">
+        <span class="blog-cat">AI Strategy</span>
+        <p class="blog-date"><i class="far fa-calendar-alt" style="margin-right:5px"></i>4 June 2026</p>
+        <h2 style="font-size:1.5rem;line-height:1.35">Why production AI fails — and how to build systems that don't</h2>
+        <p style="color:var(--body-text);font-size:.9rem;line-height:1.75">Most AI systems that fail in production don't fail because the model was bad. They fail because the surrounding system, data pipelines, monitoring, human oversight, wasn't designed for the real world. Here's what we've learned from 157+ deployments.</p>
+        <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read full article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="section wave-bg" style="padding-top:0">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,400 C300,200 700,600 1100,400 S1500,200 1800,400" stroke="#c8e3f3" stroke-width="1.1" fill="none" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2>Latest <span class="accent">articles</span></h2>
+      <p>Stay up to date with the latest insights from our AI research and engineering teams.</p>
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
+
+      <!-- Article 1 -->
+      <div class="blog-card" data-btitle="How HealthSync AI reduced patient waiting times by 40%" data-bcat="Healthcare AI" data-bdate="12 Mar 2026" data-aos="fade-up" data-aos-delay="0">
+        <div class="blog-img">
+          <img src="Healthh.jpg" alt="Healthcare AI" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">Healthcare AI</span>
+          <p class="blog-date">12 Mar 2026</p>
+          <h3>How HealthSync AI reduced patient waiting times by 40%</h3>
+          <p>A deep dive into the predictive scheduling algorithms and real-time alert systems that transformed patient flow at Horizon Care Group.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="blog-card" data-btitle="AI-driven inventory optimisation: the RetailMind story" data-bcat="Retail &amp; Analytics" data-bdate="8 Nov 2025" data-aos="fade-up" data-aos-delay="80">
+        <div class="blog-img">
+          <img src="Retail.webp" alt="Retail & Analytics" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">Retail &amp; Analytics</span>
+          <p class="blog-date">8 Nov 2025</p>
+          <h3>AI-driven inventory optimisation: the RetailMind story</h3>
+          <p>How we built a demand forecasting engine that cut overstock by 35% and improved shelf availability at UrbanStyle stores nationwide.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="blog-card" data-btitle="Personalised learning at scale: lessons from EduNova" data-bcat="EdTech" data-bdate="3 Jul 2025" data-aos="fade-up" data-aos-delay="160">
+        <div class="blog-img">
+          <img src="Education.jpg" alt="EdTech" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">EdTech</span>
+          <p class="blog-date">3 Jul 2025</p>
+          <h3>Personalised learning at scale: lessons from EduNova</h3>
+          <p>Building adaptive learning modules that respond to individual student progress while supporting educators with real-time engagement analytics.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Article 4 -->
+      <div class="blog-card" data-btitle="Route optimisation and the £2M fuel saving for SwiftMove" data-bcat="Logistics AI" data-bdate="19 Feb 2025" data-aos="fade-up" data-aos-delay="0">
+        <div class="blog-img">
+          <img src="Logistics.webp" alt="Logistics" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">Logistics AI</span>
+          <p class="blog-date">19 Feb 2025</p>
+          <h3>Route optimisation and the £2M fuel saving for SwiftMove</h3>
+          <p>Inside FleetPilot AI's optimisation engine: how predictive fuel analytics and smart route planning delivered a significant efficiency boost for a national delivery fleet.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Article 5 -->
+      <div class="blog-card" data-btitle="Real-time threat detection: building SecureVision's alerting layer" data-bcat="Security &amp; AI" data-bdate="5 Sep 2024" data-aos="fade-up" data-aos-delay="80">
+        <div class="blog-img">
+          <img src="Security and AI.jpg" alt="Security AI" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">Security &amp; AI</span>
+          <p class="blog-date">5 Sep 2024</p>
+          <h3>Real-time threat detection: building SecureVision's alerting layer</h3>
+          <p>A technical look at how we reduced false positives by 72% using a multi-model inference stack combined with human review workflows.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Article 6 -->
+      <div class="blog-card" data-btitle="Designing AI pipelines for regulated industries" data-bcat="Platform Engineering" data-bdate="14 Jan 2024" data-aos="fade-up" data-aos-delay="160">
+        <div class="blog-img">
+          <img src="Engineering.jpg" alt="Engineering" class="blog-card-img">
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">Platform Engineering</span>
+          <p class="blog-date">14 Jan 2024</p>
+          <h3>Designing AI pipelines for regulated industries</h3>
+          <p>Compliance, auditability, and trust aren't optional extras in regulated sectors — they're architectural requirements. Here's our framework.</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div><!-- /.blog-grid -->
+
+  </div>
+</section>
+
+<!-- NEWSLETTER BAND -->
+<section class="section" style="background:#fff;padding:70px 0">
+  <div class="container">
+    <div style="max-width:560px;margin:0 auto;text-align:center" data-aos="fade-up">
+      <span class="section-tag">Stay in the loop</span>
+      <h2 style="margin-bottom:14px">Get AI insights <span class="accent">delivered to you</span></h2>
+      <p style="color:var(--body-text);margin-bottom:28px;font-size:.95rem">Join 3,000+ AI practitioners and leaders who receive our fortnightly newsletter.</p>
+      <form id="newsletterForm" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+        <input id="newsletterEmail" type="email" placeholder="Enter your email" style="flex:1;min-width:240px;padding:13px 18px;border:1.5px solid rgba(0,0,0,0.1);border-radius:50px;font-family:Poppins,sans-serif;font-size:.9rem;outline:none" />
+        <button id="newsletterBtn" class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+      <p id="newsletterMsg" style="font-size:.82rem;margin-top:12px;min-height:1.2em"></p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band wave-bg">
+  <div class="wave-svg" aria-hidden="true">
+    <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-200,150 C300,-50 700,350 1100,150 S1500,-50 1800,150" stroke="#c8e3f3" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <h2>Explore our <span style="color:var(--blue)">AI platform</span></h2>
+    <p>See how AI-Solutions can help your organisation deploy reliable AI at scale.</p>
+    <a href="solutions.html" class="btn btn-primary btn-arrow">View the platform</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo"><img src="logo.png" alt="AI-Solutions" onerror="this.style.display='none'" /><span><span class="f-logo-ai">AI</span><span class="f-logo-sol">-Solutions</span></span></div>
+        <p>Building intelligent, reliable AI systems for organisations that can't afford to get it wrong. Based in Sunderland, UK.</p>
+        <div class="footer-social">
+          <a href="https://x.com/aisolutionsss" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ai-solutions-84b623416/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@AI_Solutionsss" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="home.html">About Us</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="gallery.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Articles</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Documentation</a></li>
+          
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="f-contact-item"><i class="fas fa-map-marker-alt"></i><span>12 Innovation Quarter, Sunderland, SR1 3EN, UK</span></div>
+        <div class="f-contact-item"><i class="fas fa-phone"></i><span>+44 (0)191 555 0100</span></div>
+        <div class="f-contact-item"><i class="fas fa-envelope"></i><span>helloo.ai.solutions@gmail.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI-Solutions, Sunderland UK. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/script.js"></script>
+<script src="js/assistant.js"></script>
+<script>
+(async function() {
+  function xe(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function fmtDate(str){ try{ return new Date(str).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); }catch(e){ return ''; } }
+
+  try {
+    const res = await fetch('/api/admin/public/blog');
+    if (!res.ok) return;
+    const posts = await res.json();
+    if (!Array.isArray(posts) || !posts.length) return;
+
+    document.getElementById('blogGrid').innerHTML = posts.map(p => {
+      return `<div class="blog-card"
+        data-btitle="${xe(p.title)}" data-bcat="${xe(p.category||'')}"
+        data-bdate="${fmtDate(p.published_at)}" data-bcontent="${xe(p.content||p.excerpt||'')}">
+        <div class="blog-img">
+          ${p.image_url
+            ? `<img src="${xe(p.image_url)}" alt="${xe(p.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`
+            : `<div class="blog-img-placeholder"><i class="fas fa-newspaper"></i></div>`}
+        </div>
+        <div class="blog-body">
+          <span class="blog-cat">${xe(p.category||'')}</span>
+          <p class="blog-date">${fmtDate(p.published_at)}</p>
+          <h3>${xe(p.title)}</h3>
+          <p>${xe(p.excerpt||'')}</p>
+          <a href="#" class="read-more" onclick="openBlogModal(this);return false;">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) { console.error('[blog] fetch error:', e); }
+})();
+</script>
+<style>
+  @media(max-width:768px){
+    .featured-post-grid{ grid-template-columns:1fr !important; }
+  }
+  #blogModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9998;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+  #blogModal.open{display:flex}
+  .bm-box{background:#fff;border-radius:20px;width:100%;max-width:780px;margin:60px auto;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.22);animation:bmIn .25s ease}
+  @keyframes bmIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .bm-header{background:linear-gradient(135deg,rgba(31,137,222,.1),rgba(31,137,222,.04));padding:32px 40px 28px}
+  .bm-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+  .bm-close{background:none;border:none;cursor:pointer;font-size:1.3rem;color:#94a3b8;transition:.2s}
+  .bm-close:hover{color:#1f89de}
+  .bm-body{padding:32px 40px;line-height:1.85;color:#374151;font-size:.95rem}
+  .bm-body h4{font-size:1.05rem;font-weight:700;color:#1e3a5f;margin:24px 0 10px}
+  .bm-body p{margin-bottom:14px}
+  @media(max-width:640px){.bm-header,.bm-body{padding:24px 20px}}
+</style>
+
+<!-- Article Reader Modal -->
+<div id="blogModal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeBlogModal()">
+  <div class="bm-box">
+    <div class="bm-header">
+      <div class="bm-meta">
+        <div>
+          <span class="blog-cat" id="bmCat"></span>
+          <p class="blog-date" style="margin-top:6px" id="bmDate"></p>
+        </div>
+        <button class="bm-close" onclick="closeBlogModal()" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <h2 style="font-size:1.55rem;line-height:1.4;color:#1e3a5f" id="bmTitle"></h2>
+    </div>
+    <div class="bm-body" id="bmBody"></div>
+  </div>
+</div>
+
+<script>
+var STATIC_CONTENT = {
+  "Why production AI fails and how to build systems that don't": '<p>After working across 157 enterprise AI deployments in healthcare, logistics, retail, education, and security, one pattern stands out clearly: the model is almost never the reason a project fails. The model gets 80 to 90 percent of the attention during development, yet it accounts for only a small fraction of what goes wrong in production. The real failures live in the layers around the model, in the data pipelines that feed it, the monitoring systems that watch it, and the human processes that are supposed to catch the cases it cannot handle.</p><h4>The model is not the bottleneck</h4><p>When a team builds an AI system, the majority of effort, skill, and excitement goes into model development. Researchers run experiments, tune hyperparameters, benchmark against state-of-the-art results, and celebrate when validation accuracy hits the target. What gets far less attention is the infrastructure that keeps the model working after launch day.</p><p>A model trained on clean, balanced datasets in a controlled environment will behave very differently when it encounters real-world data at scale. Input formats shift. Upstream systems change their schema without warning. Edge cases appear that never existed in training data. None of these are model problems. They are system problems, and they require system thinking to solve.</p><h4>Data pipelines fail silently and often</h4><p>The most common root cause of production AI failures is not a bad model. It is a broken or degraded data pipeline that no one noticed. Pipelines fail in ways that do not throw errors. A sensor starts reporting slightly stale readings. An ETL job silently drops rows with null values that used to be rare but are now common. A third-party API changes its response format and the parsing code quietly substitutes default values.</p><p>In each of these cases, the model continues to run. It produces predictions. Dashboards show green. But the predictions have quietly become unreliable because the inputs have changed in ways that were never intended.</p><p>The fix is not a better model. It is data quality monitoring built directly into the pipeline, with statistical checks on input distributions, value ranges, and schema integrity that trigger alerts the moment something drifts from baseline.</p><h4>Monitoring gaps are the silent killers</h4><p>Production AI without monitoring is guesswork. Most teams add application-level monitoring, tracking uptime, latency, and error rates. But very few add model-level monitoring, tracking prediction distributions, confidence score trends, feature importance shifts, and output drift over time.</p><p>A model can be technically alive and completely unreliable at the same time. If no one is watching the distribution of prediction scores, a model that has quietly degraded because of a data shift will continue processing requests, returning outputs that look plausible but are increasingly disconnected from reality.</p><p>Every production AI system we build at AI-Solutions includes a model monitoring layer that runs independently of the application. It tracks input distributions against training baselines, flags unusual spikes or drops in confidence scores, and sends alerts when output patterns deviate from historical norms. This layer has caught problems months before any business metric would have surfaced them.</p><h4>Human oversight is not a backup plan</h4><p>One of the most persistent misconceptions about production AI is that human oversight is a safety net for rare edge cases. In practice, the boundary between what the model handles well and what requires human judgment shifts constantly, and the boundary itself is often invisible.</p><p>Every system we build includes an explicit confidence threshold layer. Predictions above the threshold are automated. Predictions below the threshold are routed to a human review queue with relevant context attached. The threshold is not static. It is adjusted over time based on observed error rates in each confidence band.</p><p>This approach, which we call structured escalation, has proven consistently more reliable than either full automation or manual review alone. It also creates a valuable dataset of human decisions that can be used to retrain the model and push the threshold lower over time.</p><h4>Schema and contract management across services</h4><p>Enterprise AI rarely runs as a single isolated service. It integrates with EHR systems, CRMs, ERPs, IoT platforms, and legacy databases, often dozens of them. Every one of those integrations is a potential failure point when something changes upstream.</p><p>We enforce strict API contract documentation for every integration and require automated contract testing as part of the deployment pipeline. When an upstream system changes, the test suite catches the break before it reaches the model. Without this discipline, a routine update to an upstream field name can cause silent errors that propagate through the entire system for days before anyone notices.</p><h4>Model versioning and rollback capability</h4><p>Deploying a new model version without a reliable rollback path is one of the most common avoidable risks in production AI. Teams test rigorously before deployment, but real-world data always reveals edge cases that testing missed. When a model update causes unexpected behaviour in production, the ability to roll back to the previous version in under 10 minutes is not a nice-to-have. It is a fundamental operational requirement.</p><p>Every model we deploy is versioned, containerised, and backed by an automated rollback script tested in staging. A decision log stores the inputs, outputs, and model version for every inference, so that if a rollback is needed, the exact scope of affected decisions can be identified and reviewed.</p><h4>What reliable production AI actually looks like</h4><p>A reliable production AI system is not characterised by the accuracy of its model. It is characterised by the robustness of its surrounding architecture. It has data quality checks that catch silent pipeline failures before they reach the model. It has model monitoring that detects drift before business metrics degrade. It has structured human escalation for low-confidence predictions. It has integration contract testing that catches upstream changes automatically. And it has versioning and rollback capability that makes recovery from unexpected issues fast and controlled.</p><p>None of this is glamorous. None of it generates the kind of excitement that a new model architecture does. But it is the difference between an AI system that performs reliably for three years and one that quietly fails after three months.</p><h4>The takeaway from 157 deployments</h4><p>If you are building or procuring enterprise AI, ask these questions before you ask about model accuracy. How will you know if the input data degrades? What happens when a prediction confidence is low? How quickly can you roll back a bad model update? What tests will catch a breaking change in an upstream API? How will you know if the model has drifted six months from now?</p><p>If the answers are clear and documented, you are in good shape. If they are vague or absent, the model accuracy number means very little. The systems around the model are where production AI is won or lost, and investing in them is the most reliable path to AI that actually works at scale.</p>',
+  'How HealthSync AI reduced patient waiting times by 40%': '<p>Horizon Care Group was facing a critical challenge: patient waiting times were increasing despite staff headcount staying flat. The problem wasn\'t staff — it was unpredictable patient flow and reactive scheduling.</p><h4>The challenge</h4><p>With over 12,000 patient visits per month across three facilities, manual scheduling created daily bottlenecks. Admission surges were only apparent after they happened, leaving clinical teams scrambling to reallocate resources in real time.</p><h4>How HealthSync AI solved it</h4><p>We deployed a predictive scheduling engine trained on 3 years of historical admission data, combined with real-time feeds from A&E triage and ward management systems. The model predicts demand 6–48 hours in advance with 91% accuracy.</p><p>Alongside this, we built a real-time alert system that notifies ward managers when predicted demand exceeds current capacity — with a suggested reallocation plan already generated.</p><h4>The results</h4><p>Within 8 months of deployment, Horizon Care Group reduced average patient waiting times by 40%, cut overtime costs by £340,000 annually, and improved patient satisfaction scores by 22 points. The clinical team now operates proactively rather than reactively.</p>',
+  'AI-driven inventory optimisation: the RetailMind story': '<p>UrbanStyle stores were carrying £4.2M in excess inventory at any given time — overordering to avoid stockouts, then discounting heavily to clear surplus. RetailMind changed the equation entirely.</p><h4>The problem with traditional forecasting</h4><p>Most retail forecasting relies on historical averages and seasonal adjustments. But consumer behaviour is increasingly influenced by social trends, weather, local events, and micro-regional preferences that simple models can\'t capture.</p><h4>Our approach</h4><p>RetailMind integrates point-of-sale data, social trend signals, weather APIs, and competitor pricing into a unified demand forecasting model. It generates SKU-level predictions for each store location, updated daily.</p><p>The system also provides automated reorder recommendations with dynamic safety stock calculations — replacing the manual spreadsheet process that previously took 3 buyers full-time to manage.</p><h4>Measurable outcomes</h4><p>Overstock fell by 35% in the first year. Shelf availability for top-performing SKUs improved from 86% to 97.4%. The buying team was redeployed to strategic product development rather than firefighting stock levels. Annual net benefit: £2.1M.</p>',
+  'Personalised learning at scale: lessons from EduNova': '<p>Delivering truly personalised learning to 40,000 students across 18 partner institutions is a challenge that traditional LMS platforms weren\'t designed to solve. EduNova set out to change that.</p><h4>The learning gap</h4><p>Students were progressing through course content at a uniform pace regardless of individual comprehension. High performers were under-challenged; struggling students fell further behind without targeted support. Educators lacked the real-time data to intervene effectively.</p><h4>What we built</h4><p>EduNova\'s adaptive learning engine continuously assesses each student\'s knowledge state through embedded micro-assessments — not just quiz scores, but response time, re-attempt patterns, and engagement signals. The model adjusts content difficulty, pacing, and learning format in real time.</p><p>An educator dashboard surfaces students at risk of disengagement 5–7 days before they would typically drop off, giving tutors an actionable early warning system.</p><h4>Impact after 12 months</h4><p>Course completion rates increased by 28%. Average assessment scores improved by 18%. Educator intervention time was reduced by 40% as automated nudges handled routine re-engagement. Three partner institutions reported record student satisfaction scores.</p>',
+  'Route optimisation and the £2M fuel saving for SwiftMove': '<p>SwiftMove operates 1,200 delivery vehicles across the UK, covering 180,000 route-miles per week. Fuel costs represented 31% of their operating budget — and rising diesel prices were compressing margins to a breaking point.</p><h4>The complexity of last-mile logistics</h4><p>Traditional route planning tools optimise for distance, not for real-world fuel consumption. Variables like vehicle load, road gradient, traffic patterns, driver behaviour, and weather conditions all affect actual fuel burn — yet most systems ignore them entirely.</p><h4>FleetPilot AI\'s optimisation engine</h4><p>We built a multi-variable route optimisation model that ingests live traffic data, historical fuel consumption per driver and vehicle, road topology, and parcel weight distributions. Routes are re-optimised every 15 minutes during active delivery windows.</p><p>A driver behaviour module provides real-time coaching prompts for acceleration and braking patterns that account for 12–18% of avoidable fuel waste.</p><h4>The numbers</h4><p>In the 14 months since deployment, SwiftMove has saved £2.1M in fuel costs, reduced average delivery time by 11%, and cut CO₂ emissions by 1,840 tonnes. Fleet utilisation improved by 9%, allowing SwiftMove to handle 14% more volume with the same vehicle count.</p>',
+  'Real-time threat detection: building SecureVision\'s alerting layer': '<p>Traditional CCTV surveillance generates terabytes of footage that no human team can monitor in real time. SecureVision was built to change the economics of physical security — but early versions had a critical flaw: too many false positives were eroding operator trust.</p><h4>The false positive problem</h4><p>When a system cries wolf 40 times per shift, operators start ignoring alerts. Within six months of deploying an early ML-based detection system, SecureVision\'s clients reported alert fatigue and a return to manual monitoring. The AI had made things worse.</p><h4>Our multi-model inference approach</h4><p>We rebuilt the alerting layer using a three-stage inference pipeline. Stage one uses a lightweight edge model for motion detection and initial classification. Stage two applies a higher-accuracy cloud model only to events that pass the edge filter. Stage three routes uncertain predictions (confidence 60–85%) to a human review queue rather than issuing automatic alerts.</p><p>This human-in-the-loop approach, combined with continuous model retraining from reviewer decisions, created a feedback loop that improved precision by 8 percentage points per quarter.</p><h4>Results</h4><p>False positives fell by 72% within four months. Operator trust — measured by alert response rates — improved from 54% to 91%. Three enterprise clients expanded their SecureVision deployments within 90 days of the updated system going live.</p>',
+  'Designing AI pipelines for regulated industries': '<p>Building AI for healthcare, financial services, or government means operating under a fundamentally different constraint set than consumer AI. Accuracy isn\'t enough — you need explainability, auditability, and a documented chain of accountability for every automated decision.</p><h4>Compliance isn\'t a feature — it\'s the architecture</h4><p>We\'ve learned that teams who try to retrofit compliance onto an existing AI pipeline nearly always fail. Audit trails that don\'t capture model versions, training data lineage, and inference parameters are useless when a regulator asks why the model made a specific decision on a specific date.</p><h4>Our regulated AI framework</h4><p>Every pipeline we build for regulated clients includes four non-negotiable components: immutable data lineage tracking from raw source to model input; model versioning with rollback capability; a decision log that stores inputs, outputs, confidence scores, and model version for every inference; and a human escalation pathway for decisions below a configurable confidence threshold.</p><p>We also build in model card documentation — structured records of training data composition, known limitations, performance across demographic subgroups, and intended use boundaries — as a mandatory deliverable.</p><h4>Why this matters now</h4><p>The EU AI Act\'s high-risk AI provisions require exactly these capabilities. Organisations that have already built compliance-first pipelines will have a significant competitive advantage as regulations come into force. Those that haven\'t will face expensive retrofitting — or market exclusion.</p>'
+};
+
+function openBlogModal(el) {
+  var card = el.closest('.blog-card') || el.closest('[data-btitle]') || el.closest('.featured-post-grid');
+  var title = '', cat = '', date = '', content = '';
+  if (card) {
+    if (card.dataset && card.dataset.btitle) {
+      title   = card.dataset.btitle || '';
+      cat     = card.dataset.bcat   || '';
+      date    = card.dataset.bdate  || '';
+      content = card.dataset.bcontent || '';
+    } else {
+      title = (card.querySelector('h2,h3') || {}).textContent || '';
+      cat   = (card.querySelector('.blog-cat') || {}).textContent || '';
+      date  = (card.querySelector('.blog-date') || {}).textContent || '';
+    }
+  }
+  if (!content && STATIC_CONTENT[title]) content = STATIC_CONTENT[title];
+  if (!content) content = '<p>' + (card ? (card.querySelector('p:not(.blog-date)') || {}).textContent || '' : '') + '</p>';
+
+  document.getElementById('bmTitle').textContent = title;
+  document.getElementById('bmCat').textContent   = cat;
+  document.getElementById('bmDate').textContent  = date;
+  document.getElementById('bmBody').innerHTML    = content;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlogModal() {
+  document.getElementById('blogModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBlogModal(); });
+</script>
+
+<script>
+(function () {
+  var form  = document.getElementById('newsletterForm');
+  var input = document.getElementById('newsletterEmail');
+  var btn   = document.getElementById('newsletterBtn');
+  var msg   = document.getElementById('newsletterMsg');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!email) { showMsg('Please enter your email address.', 'err'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+
+    try {
+      var res  = await fetch('/api/newsletter', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email }),
+      });
+      var data = await res.json().catch(function () { return {}; });
+
+      if (res.ok) {
+        showMsg('🎉 ' + (data.message || "You're subscribed! Check your inbox."), 'ok');
+        input.value = '';
+      } else {
+        showMsg(data.message || 'Something went wrong. Please try again.', 'err');
+      }
+    } catch {
+      showMsg('Could not reach the server. Please try again later.', 'err');
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Subscribe';
+  });
+
+  function showMsg(text, type) {
+    msg.textContent = text;
+    msg.style.color = type === 'ok' ? '#166534' : '#991b1b';
+  }
+})();
+</script>
+</body>
+</html>

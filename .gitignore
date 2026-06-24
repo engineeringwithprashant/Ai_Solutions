@@ -1,0 +1,17 @@
+# Secrets — NEVER upload these
+server/.env
+
+# Dependencies — reinstalled on the server
+server/node_modules/
+
+# Uploaded user files
+server/uploads/
+uploads/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/

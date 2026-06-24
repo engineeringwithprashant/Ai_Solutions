@@ -1,0 +1,675 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | Admin | AI-Solutions</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <style>
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .settings-nav {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      overflow: hidden;
+      position: sticky;
+      top: 90px;
+    }
+    .settings-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 18px;
+      font-size: .83rem; font-weight: 500; color: #4a5568;
+      cursor: pointer; border: none; background: none;
+      width: 100%; text-align: left; font-family: Poppins,sans-serif;
+      border-left: 3px solid transparent;
+      transition: all .15s;
+    }
+    .settings-nav-item i { width: 16px; text-align:center; color: #a0aec0; }
+    .settings-nav-item:hover { background: #f8fafc; color: #0a87ce; }
+    .settings-nav-item:hover i { color: #0a87ce; }
+    .settings-nav-item.active {
+      background: rgba(10,135,206,.06);
+      color: #0a87ce; font-weight: 700;
+      border-left-color: #0a87ce;
+    }
+    .settings-nav-item.active i { color: #0a87ce; }
+    .settings-nav-divider { height: 1px; background: #f0f4f8; }
+
+    .settings-panel { display: none; }
+    .settings-panel.active { display: block; }
+
+    .settings-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .settings-card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #f0f4f8;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .settings-card-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(10,135,206,.08); color: #0a87ce;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0;
+    }
+    .settings-card-header h3 { font-size: .95rem; font-weight: 700; color: #1a2a3a; margin-bottom: 2px; }
+    .settings-card-header p  { font-size: .75rem; color: #a0aec0; }
+    .settings-card-body { padding: 24px; }
+
+    .sf-group { margin-bottom: 20px; }
+    .sf-group:last-child { margin-bottom: 0; }
+    .sf-label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: #4a5568; margin-bottom: 7px;
+    }
+    .sf-input {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid #e8ecf0; border-radius: 10px;
+      font-size: .85rem; font-family: Poppins,sans-serif;
+      color: #1a2a3a; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      background: #fff;
+    }
+    .sf-input:focus { border-color: #0a87ce; box-shadow: 0 0 0 3px rgba(10,135,206,.1); }
+    .sf-input:disabled { background: #f8fafc; color: #a0aec0; cursor: not-allowed; }
+    .sf-hint { font-size: .72rem; color: #a0aec0; margin-top: 5px; }
+    .sf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .sf-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 10px;
+      font-size: .83rem; font-weight: 600; font-family: Poppins,sans-serif;
+      cursor: pointer; border: none; transition: all .2s;
+    }
+    .sf-btn-primary { background: #0a87ce; color: #fff; }
+    .sf-btn-primary:hover { background: #0778b8; box-shadow: 0 4px 14px rgba(10,135,206,.35); }
+    .sf-btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+    .sf-btn-ghost {
+      background: none; color: #4a5568;
+      border: 1.5px solid #e8ecf0;
+    }
+    .sf-btn-ghost:hover { border-color: #0a87ce; color: #0a87ce; }
+
+    .sf-msg {
+      padding: 10px 14px; border-radius: 8px;
+      font-size: .8rem; margin-top: 14px; display: none;
+    }
+    .sf-msg-ok  { background: rgba(72,187,120,.1); border:1px solid #86efac; color: #166534; }
+    .sf-msg-err { background: rgba(229,62,62,.07); border:1px solid #fca5a5; color: #991b1b; }
+
+    /* Profile avatar */
+    .profile-avatar-row {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 24px;
+    }
+    .profile-avatar-big {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #fff;
+      border: 2px solid rgba(10,135,206,.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .profile-avatar-big img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    }
+    .profile-avatar-info h4 { font-size: 1rem; font-weight: 700; color: #1a2a3a; }
+    .profile-avatar-info p  { font-size: .78rem; color: #a0aec0; margin-top: 3px; }
+    .profile-role-badge {
+      display: inline-block; margin-top: 6px;
+      background: rgba(10,135,206,.1); color: #0a87ce;
+      font-size: .65rem; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 50px;
+    }
+
+    /* System info table */
+    .sys-table { width: 100%; border-collapse: collapse; }
+    .sys-table tr { border-bottom: 1px solid #f0f4f8; }
+    .sys-table tr:last-child { border-bottom: none; }
+    .sys-table td { padding: 12px 0; font-size: .83rem; }
+    .sys-table td:first-child { color: #718096; width: 44%; font-weight: 500; }
+    .sys-table td:last-child  { color: #1a2a3a; font-weight: 600; }
+    .sys-status-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; background: #10b981; margin-right: 6px;
+    }
+
+    /* Danger zone */
+    .danger-zone {
+      border: 1.5px solid #fca5a5;
+      border-radius: 14px; padding: 20px 24px;
+    }
+    .danger-zone h4 { font-size: .88rem; font-weight: 700; color: #991b1b; margin-bottom: 6px; }
+    .danger-zone p  { font-size: .78rem; color: #4a5568; margin-bottom: 14px; }
+    .sf-btn-danger {
+      background: none; color: #e53e3e;
+      border: 1.5px solid #fca5a5; font-family: Poppins,sans-serif;
+      padding: 9px 20px; border-radius: 10px;
+      font-size: .8rem; font-weight: 600; cursor: pointer;
+      transition: all .2s;
+    }
+    .sf-btn-danger:hover { background: #fff5f5; border-color: #e53e3e; }
+
+    @media (max-width: 768px) {
+      .settings-grid { grid-template-columns: 1fr; }
+      .sf-row { grid-template-columns: 1fr; }
+      .settings-nav { position: static; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="../logo.png" onerror="this.style.display='none'" />
+        <span><span class="ai">AI</span><span class="sol">-Solutions</span></span>
+      </div>
+      <div class="sidebar-subtitle">Admin Portal</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a href="enquiries.html"><i class="fas fa-inbox"></i> Enquiries</a>
+      <a href="subscribers.html"><i class="fas fa-mail-bulk"></i> Newsletter</a>
+      <div class="sidebar-section-label">Content</div>
+      <a href="blog.html"><i class="fas fa-newspaper"></i> Blog Posts</a>
+      <a href="events-mgmt.html"><i class="fas fa-calendar-alt"></i> Events</a>
+      <a href="testimonials-mgmt.html"><i class="fas fa-star"></i> Testimonials</a>
+      <a href="team.html"><i class="fas fa-users"></i> Team Members</a>
+      <a href="gallery-mgmt.html"><i class="fas fa-images"></i> Gallery</a>
+      <div class="sidebar-section-label">System</div>
+      <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../home.html"><i class="fas fa-external-link-alt"></i> View site</a>
+      <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <span class="topbar-title">Settings</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge" id="topbarDate"></span>
+        <div class="topbar-avatar" id="topbarAvatar"><div class="avatar-img-wrap"><img src="../logo.png" alt="A" /></div></div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <div class="page-header" style="margin-bottom:24px">
+        <div>
+          <h2 style="font-size:1.25rem;font-weight:700;color:#1a2a3a">Settings</h2>
+          <p style="font-size:.85rem;color:#718096;margin-top:3px">Manage your account and system preferences</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+
+        <!-- Left nav -->
+        <div class="settings-nav">
+          <button class="settings-nav-item active" onclick="showPanel('profile',this)">
+            <i class="fas fa-user-circle"></i> Profile
+          </button>
+          <button class="settings-nav-item" onclick="showPanel('security',this)">
+            <i class="fas fa-lock"></i> Security
+          </button>
+          <div class="settings-nav-divider"></div>
+          <button class="settings-nav-item" onclick="showPanel('system',this)">
+            <i class="fas fa-server"></i> System Info
+          </button>
+          <button class="settings-nav-item" onclick="showPanel('about',this)">
+            <i class="fas fa-info-circle"></i> About
+          </button>
+        </div>
+
+        <!-- Right panels -->
+        <div>
+
+          <!-- Profile -->
+          <div class="settings-panel active" id="panel-profile">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon"><i class="fas fa-user"></i></div>
+                <div>
+                  <h3>Admin Profile</h3>
+                  <p>Your account information</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <div class="profile-avatar-row">
+                  <div class="profile-avatar-big" id="profileInitials">
+                    <img src="../logo.png" alt="Admin" id="profileAvatarImg" />
+                  </div>
+                  <div class="profile-avatar-info">
+                    <h4 id="profileName">Admin</h4>
+                    <p id="profileEmail">—</p>
+                    <span class="profile-role-badge">Administrator</span>
+                  </div>
+                </div>
+                <div class="sf-row">
+                  <div class="sf-group">
+                    <label class="sf-label">Full Name</label>
+                    <input class="sf-input" id="profileNameInput" type="text" disabled />
+                    <p class="sf-hint">Contact your system admin to change your name.</p>
+                  </div>
+                  <div class="sf-group">
+                    <label class="sf-label">Email Address</label>
+                    <input class="sf-input" id="profileEmailInput" type="email" disabled />
+                    <p class="sf-hint">Login email — use the Security tab to manage password.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="settings-panel" id="panel-security">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon"><i class="fas fa-key"></i></div>
+                <div>
+                  <h3>Change Password</h3>
+                  <p>Update your admin login password</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <div class="sf-group">
+                  <label class="sf-label">Current Password</label>
+                  <input class="sf-input" id="pwdCurrent" type="password" placeholder="Enter current password" />
+                </div>
+                <div class="sf-row">
+                  <div class="sf-group">
+                    <label class="sf-label">New Password</label>
+                    <input class="sf-input" id="pwdNew" type="password" placeholder="Min. 8 characters" />
+                  </div>
+                  <div class="sf-group">
+                    <label class="sf-label">Confirm New Password</label>
+                    <input class="sf-input" id="pwdConfirm" type="password" placeholder="Repeat new password" />
+                  </div>
+                </div>
+                <div id="pwdMsg" class="sf-msg"></div>
+                <button class="sf-btn sf-btn-primary" id="pwdSaveBtn" onclick="changePassword()">
+                  <i class="fas fa-save"></i> Update Password
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card" id="twoFACard">
+              <div class="settings-card-header">
+                <div class="settings-card-icon" style="background:rgba(10,135,206,.08);color:#0a87ce">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div>
+                  <h3>Two-Factor Authentication</h3>
+                  <p>Require Google Authenticator code on login</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <div id="twoFAStatus" style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+                  <span id="twoFABadge" style="font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:#f0fdf4;color:#166534;border:1px solid #86efac">Disabled</span>
+                  <span style="font-size:.8rem;color:#718096" id="twoFAStatusText">2FA is currently disabled.</span>
+                </div>
+                <!-- Setup flow (shown when disabled) -->
+                <div id="twoFASetup">
+                  <button class="sf-btn sf-btn-primary" id="twoFAEnableBtn" onclick="start2FASetup()">
+                    <i class="fas fa-shield-alt"></i> Enable 2FA
+                  </button>
+                  <div id="twoFAQRWrap" style="display:none;margin-top:20px">
+                    <p style="font-size:.83rem;color:#4a5568;margin-bottom:14px">1. Open <strong>Google Authenticator</strong> → tap <strong>+</strong> → <strong>Scan QR code</strong></p>
+                    <img id="twoFAQR" style="width:180px;height:180px;border:4px solid #e8ecf0;border-radius:12px;display:block;margin-bottom:16px" />
+                    <p style="font-size:.83rem;color:#4a5568;margin-bottom:12px">2. Enter the 6-digit code from the app to confirm:</p>
+                    <div style="display:flex;gap:8px;margin-bottom:14px">
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                      <input class="sf-input totp-setup-box" maxlength="1" inputmode="numeric" style="width:44px;text-align:center;font-size:1.2rem;font-weight:700;padding:8px 4px" />
+                    </div>
+                    <div id="twoFASetupMsg" class="sf-msg"></div>
+                    <button class="sf-btn sf-btn-primary" id="twoFAConfirmBtn" onclick="confirm2FA()" style="margin-top:8px">
+                      <i class="fas fa-check"></i> Activate 2FA
+                    </button>
+                  </div>
+                </div>
+                <!-- Disable flow (shown when enabled) -->
+                <div id="twoFADisableWrap" style="display:none">
+                  <p style="font-size:.82rem;color:#4a5568;margin-bottom:14px">Enter your password to disable 2FA:</p>
+                  <input class="sf-input" id="twoFADisablePwd" type="password" placeholder="Current password" style="max-width:280px;margin-bottom:12px" />
+                  <div id="twoFADisableMsg" class="sf-msg"></div>
+                  <div style="display:flex;gap:10px;margin-top:4px">
+                    <button class="sf-btn sf-btn-danger" onclick="disable2FA()"><i class="fas fa-times"></i> Disable 2FA</button>
+                    <button class="sf-btn sf-btn-ghost" onclick="document.getElementById('twoFADisableWrap').style.display='none'">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon" style="background:rgba(229,62,62,.08);color:#e53e3e">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                  <h3>Danger Zone</h3>
+                  <p>Irreversible actions</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <div class="danger-zone">
+                  <h4>Sign out of all sessions</h4>
+                  <p>This will log you out and clear your session token. You'll need to sign in again.</p>
+                  <button class="sf-btn-danger" onclick="signOutAll()">
+                    <i class="fas fa-sign-out-alt" style="margin-right:6px"></i> Sign Out Everywhere
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Info -->
+          <div class="settings-panel" id="panel-system">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon"><i class="fas fa-server"></i></div>
+                <div>
+                  <h3>System Information</h3>
+                  <p>Server and application details</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <table class="sys-table">
+                  <tr>
+                    <td>Status</td>
+                    <td><span class="sys-status-dot"></span>Online</td>
+                  </tr>
+                  <tr>
+                    <td>Application</td>
+                    <td>AI-Solutions Admin Portal</td>
+                  </tr>
+                  <tr>
+                    <td>Server Port</td>
+                    <td>3000</td>
+                  </tr>
+                  <tr>
+                    <td>Database</td>
+                    <td>PostgreSQL 18</td>
+                  </tr>
+                  <tr>
+                    <td>API Base</td>
+                    <td id="sysApiBase">—</td>
+                  </tr>
+                  <tr>
+                    <td>Current User</td>
+                    <td id="sysUser">—</td>
+                  </tr>
+                  <tr>
+                    <td>Session Expires</td>
+                    <td id="sysExpiry">—</td>
+                  </tr>
+                  <tr>
+                    <td>Browser</td>
+                    <td id="sysBrowser">—</td>
+                  </tr>
+                  <tr>
+                    <td>Local Time</td>
+                    <td id="sysTime">—</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- About -->
+          <div class="settings-panel" id="panel-about">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon"><i class="fas fa-info-circle"></i></div>
+                <div>
+                  <h3>About AI-Solutions</h3>
+                  <p>Platform information</p>
+                </div>
+              </div>
+              <div class="settings-card-body">
+                <div style="text-align:center;padding:16px 0 24px">
+                  <img src="../logo.png" alt="AI-Solutions" onerror="this.style.display='none'"
+                    style="height:72px;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto"/>
+                  <div style="font-size:1.3rem;font-weight:800;color:#1a2a3a;margin-bottom:4px">
+                    <span style="color:#0a87ce">AI</span>-Solutions
+                  </div>
+                  <div style="font-size:.78rem;color:#a0aec0;letter-spacing:1.5px;text-transform:uppercase">
+                    Admin Portal v1.0
+                  </div>
+                </div>
+                <table class="sys-table">
+                  <tr><td>Platform</td><td>Node.js / Express</td></tr>
+                  <tr><td>Frontend</td><td>HTML5 / CSS3 / Vanilla JS</td></tr>
+                  <tr><td>Database</td><td>PostgreSQL</td></tr>
+                  <tr><td>Authentication</td><td>JWT (8h session)</td></tr>
+                  <tr><td>Email Service</td><td>Gmail SMTP via Nodemailer</td></tr>
+                  <tr><td>Build</td><td>2026 · Sunderland, UK</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+<script>
+(function () {
+
+  /* Decode JWT */
+  function parseJwt(t) {
+    try { return JSON.parse(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))); }
+    catch { return {}; }
+  }
+
+  const token   = sessionStorage.getItem('ais_admin_token') || '';
+  const payload = parseJwt(token);
+  const name    = payload.name  || 'Admin';
+  const email   = payload.email || '';
+  const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+
+  /* Profile panel */
+  const avatarImg = document.getElementById('profileAvatarImg');
+  if (avatarImg) avatarImg.alt = initials;
+  document.getElementById('profileName').textContent      = name;
+  document.getElementById('profileEmail').textContent     = email;
+  document.getElementById('profileNameInput').value       = name;
+  document.getElementById('profileEmailInput').value      = email;
+
+  /* System panel */
+  document.getElementById('sysApiBase').textContent  = window.location.origin + '/api/admin';
+  document.getElementById('sysUser').textContent     = name + ' (' + email + ')';
+  document.getElementById('sysBrowser').textContent  = navigator.userAgent.split(')')[0].split('(')[1] || navigator.userAgent.slice(0,60);
+  document.getElementById('sysTime').textContent     = new Date().toLocaleString('en-GB');
+
+  /* Token expiry */
+  if (payload.exp) {
+    const exp = new Date(payload.exp * 1000);
+    document.getElementById('sysExpiry').textContent =
+      exp.toLocaleString('en-GB', { dateStyle:'medium', timeStyle:'short' });
+  }
+
+  /* Panel switcher */
+  window.showPanel = function(name, btn) {
+    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.settings-nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    btn.classList.add('active');
+  };
+
+  /* Change password */
+  window.changePassword = async function () {
+    const cur  = document.getElementById('pwdCurrent').value;
+    const nw   = document.getElementById('pwdNew').value;
+    const conf = document.getElementById('pwdConfirm').value;
+    const msg  = document.getElementById('pwdMsg');
+    const btn  = document.getElementById('pwdSaveBtn');
+
+    function showMsg(text, type) {
+      msg.textContent = text;
+      msg.className   = 'sf-msg sf-msg-' + type;
+      msg.style.display = 'block';
+    }
+
+    if (!cur || !nw || !conf) { showMsg('Please fill in all fields.', 'err'); return; }
+    if (nw.length < 8)        { showMsg('New password must be at least 8 characters.', 'err'); return; }
+    if (nw !== conf)          { showMsg('New passwords do not match.', 'err'); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Saving…';
+
+    try {
+      const res  = await fetch('/api/admin/change-password', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body:    JSON.stringify({ currentPassword: cur, newPassword: nw }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        showMsg('Password updated successfully!', 'ok');
+        document.getElementById('pwdCurrent').value = '';
+        document.getElementById('pwdNew').value      = '';
+        document.getElementById('pwdConfirm').value  = '';
+      } else {
+        showMsg(data.message || 'Failed to update password.', 'err');
+      }
+    } catch {
+      showMsg('Server unreachable. Make sure the server is running.', 'err');
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-save"></i> Update Password';
+  };
+
+  /* Sign out everywhere */
+  window.signOutAll = function () {
+    if (!confirm('This will sign you out. Continue?')) return;
+    fetch('/api/admin/logout', { method:'POST', credentials:'include' }).catch(()=>{});
+    sessionStorage.removeItem('ais_admin_token');
+    window.location.href = 'login.html';
+  };
+
+  /* ── 2FA ── */
+  var _2faSecret = '';
+
+  function sfMsg(id, text, type) {
+    var el = document.getElementById(id);
+    el.textContent = text; el.className = 'sf-msg sf-msg-' + type; el.style.display = text ? 'block' : 'none';
+  }
+
+  async function load2FAStatus() {
+    try {
+      var res  = await fetch('/api/admin/2fa/status', { headers: { 'Authorization': 'Bearer ' + token } });
+      var data = await res.json();
+      var enabled = data.enabled;
+      var badge = document.getElementById('twoFABadge');
+      var statusText = document.getElementById('twoFAStatusText');
+      if (enabled) {
+        badge.textContent = 'Enabled'; badge.style.background='#f0fdf4'; badge.style.color='#166534'; badge.style.borderColor='#86efac';
+        statusText.textContent = '2FA is active. Your account is protected.';
+        document.getElementById('twoFASetup').style.display = 'none';
+        document.getElementById('twoFADisableWrap').style.display = '';
+      } else {
+        badge.textContent = 'Disabled'; badge.style.background='#fff7ed'; badge.style.color='#9a3412'; badge.style.borderColor='#fdba74';
+        statusText.textContent = '2FA is currently disabled.';
+        document.getElementById('twoFASetup').style.display = '';
+        document.getElementById('twoFADisableWrap').style.display = 'none';
+      }
+    } catch {}
+  }
+  load2FAStatus();
+
+  /* Setup boxes auto-advance */
+  var setupBoxes = document.querySelectorAll('.totp-setup-box');
+  setupBoxes.forEach(function(box, i) {
+    box.addEventListener('input', function() {
+      this.value = this.value.replace(/[^0-9]/g,'').slice(-1);
+      if (this.value && i < setupBoxes.length - 1) setupBoxes[i+1].focus();
+    });
+    box.addEventListener('keydown', function(e) {
+      if (e.key === 'Backspace' && !this.value && i > 0) setupBoxes[i-1].focus();
+    });
+  });
+
+  window.start2FASetup = async function() {
+    document.getElementById('twoFAEnableBtn').disabled = true;
+    try {
+      var res  = await fetch('/api/admin/2fa/setup', { method:'POST', headers:{ 'Authorization':'Bearer '+token } });
+      var data = await res.json();
+      _2faSecret = data.secret;
+      document.getElementById('twoFAQR').src = data.qr;
+      document.getElementById('twoFAQRWrap').style.display = '';
+      setupBoxes.forEach(b => b.value='');
+      sfMsg('twoFASetupMsg','','ok');
+    } catch { sfMsg('twoFASetupMsg','Failed to generate QR code.','err'); }
+    document.getElementById('twoFAEnableBtn').disabled = false;
+  };
+
+  window.confirm2FA = async function() {
+    var code = Array.from(setupBoxes).map(b=>b.value).join('');
+    if (code.length < 6) { sfMsg('twoFASetupMsg','Enter all 6 digits.','err'); return; }
+    var btn = document.getElementById('twoFAConfirmBtn');
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Activating…';
+    try {
+      var res  = await fetch('/api/admin/2fa/enable', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body: JSON.stringify({ secret: _2faSecret, code }),
+      });
+      var data = await res.json();
+      if (res.ok) {
+        sfMsg('twoFASetupMsg','2FA enabled! You will need your authenticator app on next login.','ok');
+        setTimeout(load2FAStatus, 1500);
+      } else { sfMsg('twoFASetupMsg', data.message || 'Failed.','err'); }
+    } catch { sfMsg('twoFASetupMsg','Server error.','err'); }
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Activate 2FA';
+  };
+
+  window.disable2FA = async function() {
+    var pwd = document.getElementById('twoFADisablePwd').value;
+    if (!pwd) { sfMsg('twoFADisableMsg','Enter your password.','err'); return; }
+    try {
+      var res  = await fetch('/api/admin/2fa/disable', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body: JSON.stringify({ password: pwd }),
+      });
+      var data = await res.json();
+      if (res.ok) { sfMsg('twoFADisableMsg','2FA disabled.','ok'); setTimeout(load2FAStatus,1200); }
+      else { sfMsg('twoFADisableMsg', data.message||'Failed.','err'); }
+    } catch { sfMsg('twoFADisableMsg','Server error.','err'); }
+  };
+
+})();
+</script>
+</body>
+</html>
